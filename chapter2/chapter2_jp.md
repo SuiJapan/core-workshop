@@ -9,29 +9,31 @@ style: |
     background: linear-gradient(135deg, #0a1628 0%, #1a2332 100%);
     padding: 20px;
     line-height: 1.35;
-    text-align: center;
+    text-align: left;
+    font-size: 28px;
   }
-  h1, h2, h3 {
+  /* Headings */
+  h1, h2 {
     color: #5eb3e6;
     font-weight: 300;
     margin-top: 0;
     line-height: 1.15;
   }
   h1 {
-    font-size: 2.1em;
+    font-size: 58.8px;
     margin-bottom: 0.2em;
   }
   h2 {
-    font-size: 1.7em;
-    color: #5eb3e6;
+    font-size: 47.6px;
     margin-bottom: 0.2em;
   }
   h3 {
-    font-size: 1.0em;
+    font-size: 28px;
     color: #ffffff;
     margin-bottom: 0.2em;
     text-align: left;
   }
+  /* Lists */
   ul {
     text-align: left !important;
     margin-top: 0.25em;
@@ -42,7 +44,7 @@ style: |
   ul li {
     text-align: left !important;
     margin-bottom: 0.35em;
-    font-size: 0.8em;
+    font-size: 22.4px;
     line-height: 1.35;
     position: relative;
   }
@@ -54,15 +56,24 @@ style: |
     margin-left: -1em;
     width: 1em;
   }
-  ul li::marker {
-    display: none;
+  ol {
+    text-align: left !important;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    padding-left: 1.2em;
   }
+  ol li {
+    font-size: 22.4px;
+    line-height: 1.35;
+    margin-bottom: 0.35em;
+  }
+  /* Code */
   code {
     background-color: #1e2936;
     color: #5eb3e6;
     padding: 0.2em 0.4em;
     border-radius: 4px;
-    font-size: 0.95em;
+    font-size: 26.6px;
   }
   pre {
     background-color: #1e2936;
@@ -71,70 +82,56 @@ style: |
     padding: 0.7em;
     margin-top: 0.25em;
     margin-bottom: 0.25em;
-    font-size: 0.9em;
+    font-size: 25.2px;
   }
+  /* Layout helpers */
   .columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.2em;
     text-align: left;
   }
-  .columns ul {
-    text-align: left !important;
-  }
-  .highlight {
-    color: #5eb3e6;
-  }
-  a {
-    color: #5eb3e6;
-    font-size: 0.95em;
-  }
-  .subtitle {
-    color: #b8c5d6;
-    font-size: 0.9em;
-    margin-top: 0.25em;
-  }
-  p {
-    font-size: 0.8em;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    line-height: 1.35;
-  }
-  ol {
-    text-align: left !important;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    padding-left: 1.2em;
-  }
-  ol li {
-    font-size: 0.8em;
-    line-height: 1.35;
-    margin-bottom: 0.35em;
-  }
   .compact {
-    font-size: 0.9em;
+    font-size: 25.2px;
   }
   .compact h3 {
-    font-size: 1.1em;
+    font-size: 30.8px;
     margin-bottom: 0.15em;
   }
   .compact ul li {
-    font-size: 0.95em;
+    font-size: 26.6px;
     margin-bottom: 0.25em;
     line-height: 1.25;
   }
   .compact p {
-    font-size: 0.9em;
+    font-size: 25.2px;
     line-height: 1.25;
   }
-  /* Ultra small text utility for dense slides */
-  .text-04 p,
-  .text-04 ul li,
-  .text-04 ol li,
-  .text-04 a,
-  .text-04 .subtitle {
-    font-size: 0.4em;
-    line-height: 1.3;
+  /* Slightly more compact variant for dense slides */
+  .compact-sm {
+    font-size: 24.6px;
+  }
+  .compact-sm h3 {
+    font-size: 28px;
+    margin-bottom: 0.15em;
+  }
+  .compact-sm ul li,
+  .compact-sm ol li {
+    font-size: 25.8px;
+    line-height: 1.28;
+    margin-bottom: 0.25em;
+  }
+  /* Text */
+  p {
+    font-size: 22.4px;
+    text-align: left;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    line-height: 1.35;
+  }
+  a {
+    color: #5eb3e6;
+    font-size: 26.6px;
   }
 ---
 
@@ -251,6 +248,8 @@ Sui上で代替可能トークン（Fungible Token）を作成・管理するモ
 </div>
 
 ---
+
+<!-- class: compact-sm -->
 
 ## Moveプロジェクトの基本構成
 

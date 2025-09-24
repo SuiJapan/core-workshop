@@ -7,72 +7,131 @@ style: |
   section {
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg, #0a1628 0%, #1a2332 100%);
-    padding: 60px;
+    padding: 20px;
+    line-height: 1.35;
+    text-align: left;
+    font-size: 28px;
   }
-  h1, h2, h3 {
+  /* Headings */
+  h1, h2 {
     color: #5eb3e6;
     font-weight: 300;
     margin-top: 0;
+    line-height: 1.15;
   }
   h1 {
-    font-size: 2.0em;
+    font-size: 58.8px;
     margin-bottom: 0.2em;
   }
   h2 {
-    font-size: 1.6em;
-    color: #5eb3e6;
+    font-size: 47.6px;
     margin-bottom: 0.2em;
   }
   h3 {
-    font-size: 1.2em;
+    font-size: 28px;
     color: #ffffff;
     margin-bottom: 0.2em;
-  }
-  ul {
     text-align: left;
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
+  }
+  /* Lists */
+  ul {
+    text-align: left !important;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    padding-left: 1em;
+    list-style: none;
   }
   ul li {
-    margin-bottom: 0.4em;
-    font-size: 1.05em;
+    text-align: left !important;
+    margin-bottom: 0.35em;
+    font-size: 22.4px;
+    line-height: 1.35;
+    position: relative;
   }
-  ul li::marker {
+  ul li:before {
+    content: "✓ ";
     color: #5eb3e6;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: -1em;
+    width: 1em;
   }
+  ol {
+    text-align: left !important;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    padding-left: 1.2em;
+  }
+  ol li {
+    font-size: 22.4px;
+    line-height: 1.35;
+    margin-bottom: 0.35em;
+  }
+  /* Code */
   code {
     background-color: #1e2936;
     color: #5eb3e6;
     padding: 0.2em 0.4em;
     border-radius: 4px;
+    font-size: 26.6px;
   }
   pre {
     background-color: #1e2936;
     border: 1px solid #2a3f5f;
     border-radius: 8px;
-    padding: 0.8em;
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
+    padding: 0.7em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    font-size: 25.2px;
   }
+  /* Layout helpers */
   .columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5em;
+    gap: 1.2em;
+    text-align: left;
   }
-  .highlight {
-    color: #5eb3e6;
+  .compact {
+    font-size: 25.2px;
+  }
+  .compact h3 {
+    font-size: 30.8px;
+    margin-bottom: 0.15em;
+  }
+  .compact ul li {
+    font-size: 26.6px;
+    margin-bottom: 0.25em;
+    line-height: 1.25;
+  }
+  .compact p {
+    font-size: 25.2px;
+    line-height: 1.25;
+  }
+  /* Slightly more compact variant for dense slides */
+  .compact-sm {
+    font-size: 24.6px;
+  }
+  .compact-sm h3 {
+    font-size: 28px;
+    margin-bottom: 0.15em;
+  }
+  .compact-sm ul li,
+  .compact-sm ol li {
+    font-size: 25.8px;
+    line-height: 1.28;
+    margin-bottom: 0.25em;
+  }
+  /* Text */
+  p {
+    font-size: 22.4px;
+    text-align: left;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    line-height: 1.35;
   }
   a {
     color: #5eb3e6;
-  }
-  .subtitle {
-    color: #b8c5d6;
-    font-size: 0.9em;
-    margin-top: 0.3em;
-  }
-  p {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
+    font-size: 26.6px;
   }
 ---
 
@@ -207,20 +266,20 @@ style: |
 
 ---
 
-# CLI Command Walkthrough
+# CLI コマンドのウォークスルー
 
-① `Sui client new-address`
+① `sui client new-address` — 新しいアドレスを作成
 
-② `Sui client transfer-sui`
+② `sui client transfer-sui` — SUI を送金
 
-③ `Sui client call`
+③ `sui client call` — コントラクト関数を呼び出し
 
 ---
 
-## Entry Functions & Structs
+## エントリ関数と構造体
 
-1. Entry functions = executable functions
-2. Structs = custom data types
+1. エントリ関数 = 直接実行できる関数
+2. 構造体 = カスタムデータ型
 
 ```rust
 Module counter {
@@ -236,29 +295,29 @@ Module counter {
 
 ---
 
-# View Your Module
+# モジュールを確認
 
-1. Go to Sui Explorer
+1. Sui Explorer にアクセス
    [https://suiscan.xyz/mainnet/home](https://suiscan.xyz/mainnet/home)
 
-2. Search for your Move module
+2. 自分の Move モジュールを検索
 
 ---
 
-# Top Student Questions
+# よくある質問
 
-• What is the Sui wallet recovery process?
-• How do I connect my Sui wallet to dApps?
-• Where can I find more resources on Move?
-• Is this course really beginner-friendly?
-
----
-
-# Next: Builder Track Preview
-
-• Focus on writing and deploying contracts
-• Understanding gas and storage
+• Sui ウォレットのリカバリ手順は？
+• Sui ウォレットを dApp に接続するには？
+• Move の学習リソースはどこで見つかりますか？
+• このコースは本当に初心者向けですか？
 
 ---
 
-# Thank You.
+# 次回: ビルダートラック予告
+
+• コントラクトの作成とデプロイに注力
+• ガスとストレージの理解
+
+---
+
+# ありがとうございました
