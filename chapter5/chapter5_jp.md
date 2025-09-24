@@ -136,42 +136,47 @@ style: |
 ---
 
 <!-- Title -->
-###### モジュール5 - 高度な機能
-# 高度な機能
-Sui 上で AI を構築し、スマートコントラクトと連携する方法、  
-zkLogin とスポンサー付きトランザクションによるスムーズなオンボーディングを学びます
+###### モジュール5 - Suiの高度な機能
+# Suiの高度な機能
+<br/>
+このモジュールでは以下のような高度な機能について学びます
+<br/>
+
+### SuiでのAI構築とスマートコントラクト連携
+### zkLoginとスポンサー付きトランザクションによる円滑なオンボーディング
 
 ---
 
-# アジェンダ
-1. zkLogin の仕組み  
-2. スポンサー付きトランザクション — ガス代の管理  
-3. Sui のオラクル — オフチェーンデータをオンチェーンへ  
-4. Sui のクロスチェーンブリッジ  
-5. Sui 上での自律型 AI エージェントの構築  
+# 目次
+1. zkLoginの仕組み  
+2. スポンサー付きトランザクション — ガス代の支払い代行  
+3. Suiのオラクル — オフチェーンデータのオンチェーン利用  
+4. Suiのクロスチェーンブリッジ  
+5. Suiでの自律型AIエージェント構築  
 6. 演習
 
 ---
 
-# zkLogin の仕組み
+# zkLoginの仕組み
 <div class="columns compact-sm">
 
 <div>
 
 ### ユーザーログイン
-- Google や Facebook の認証情報で認証  
-- 個人情報を開示せずに本人性を検証
+- GoogleやFacebookなどの既存の<br/>認証情報でウォレット生成 
+- 認証情報とウォレットアドレスが<br/>直接紐づかない
 
-### プライバシー保護 — 証明の生成
-- JWT とソルトを用いて zkProof を生成し、アカウントの安全性を確保
+### プライバシー保護
+- JWTとソルトからzkProofを生成
+  アカウントの安全性を確保します。
 
 </div>
 
 <div>
 
 ### なぜ重要か
-- 慣れ親しんだ Web 認証情報で Sui dApp にログインでき、  
-  ゼロ知識証明によりプライバシーを確保。
+- 使い慣れたWeb認証情報でdAppにログインしつつ、  
+  ゼロ知識証明によってプライバシーを保護します。
 
 **ドキュメント**  
 https://docs.sui.io/concepts/cryptography/zklogin
@@ -182,43 +187,45 @@ https://docs.sui.io/concepts/cryptography/zklogin
 
 ---
 
-## 演習 — zkLogin の統合
+## 演習 — zkLoginのデモアプリを作ってみよう！
+<br/>
 <div class="compact-sm">
 
-**課題:** `login.ts` ハンドラーを完成させる。  
-- 認証に `@googleapis/oauth2` を使用  
-- `@sui/sui.js` の `generateZkProof` ヘルパーを使用  
+### UNCHAINの教材のリンク
 
-**例**  
-https://docs.sui.io/guides/developer/cryptography/zklogin-integration/zklogin-example
+https://buidl.unchain.tech/Sui/Sui-zklogin/
+
+### スターターキット
+
+https://github.com/unchain-tech/sui-zklogin-app
 
 </div>
 
 ---
 
-# スポンサー付きトランザクション — ガス代管理
+# ガスレストランザクション
 <div class="columns compact-sm">
 
 <div>
 
 ### ガススポンサーの役割
-- ユーザー／ガスステーション／スポンサーで手数料をシームレスに管理
+- ユーザー、ガスステーション、スポンサー間で手数料をシームレスに管理します。
 
 ### サービス例
-- Shinami の Gas Station によりガス代のスポンサーが容易  
+- ShinamiのGas Stationを利用することで、ガス代のスポンサーが容易になります。  
   https://blog.sui.io/shinami-gas-station-tutorial/
 
 ### ユースケース
-- ゲーム dApp が初期トランザクションのガス代を肩代わりしユーザー獲得を促進
+- ゲームdAppが初期トランザクションのガス代を負担し、ユーザー獲得を促進します。
 
 </div>
 
 <div>
 
-## 演習 — 最初のトランザクションをスポンサー
-- スポンサーを設定  
-- スポンサー負担でユーザートランザクションを送信  
-- レシートとガス支払者をオンチェーンで確認
+## 演習
+- スポンサーを設定します。  
+- ガスレストランザクションを送信します。  
+- レシートとガス支払者をオンチェーンで確認します。
 
 </div>
 
@@ -226,7 +233,7 @@ https://docs.sui.io/guides/developer/cryptography/zklogin-integration/zklogin-ex
 
 ---
 
-# Sui のオラクル — オフチェーンデータをオンチェーンへ
+# Suiでのオラクル利用 
 <div class="columns compact-sm">
 
 <div>
@@ -234,23 +241,23 @@ https://docs.sui.io/guides/developer/cryptography/zklogin-integration/zklogin-ex
 ### 利用可能なオラクル
 - Chainlink  
 - Band Protocol  
-- Mysten Labs の simple oracle と meta oracle
+- Mysten Labs製のsimple oracleとmeta oracle
 
 ### 開発者向けガイド
-- 天気オラクルの例  
+- 天気オラクルの実装例  
   https://docs.sui.io/guides/developer/app-examples/weather-oracle#initialize-the-project  
-- Move オラクルのサンプル  
+- Moveオラクルのサンプルコード  
   https://github.com/pentagonxyz/move-oracles
 
 </div>
 
 <div>
 
-## 演習 — オンチェーンの価格フィード
+## 演習 — オンチェーン価格フィードの実装
 **要件:**  
 POST API `http://localhost:8080/price?symbol=ETH/USD` を作成し、  
-Node スクリプトで JSON をパースして、Move オラクルコントラクトの  
-`submit_price` 関数を呼び出す。
+NodeスクリプトでJSONをパースして、Moveオラクルコントラクトの  
+`submit_price`関数を呼び出します。
 
 </div>
 
@@ -258,7 +265,7 @@ Node スクリプトで JSON をパースして、Move オラクルコントラ�
 
 ---
 
-# Sui のクロスチェーンブリッジ — 相互運用性
+# Suiのクロスチェーンブリッジ — 相互運用性
 <div class="compact-sm">
 
 ### Sui Bridge（ネイティブブリッジ）
@@ -267,41 +274,41 @@ Node スクリプトで JSON をパースして、Move オラクルコントラ�
 https://bridge.sui.io/
 
 ### その他のブリッジ
-- Wormhole のメッセージングで Sui と接続  
+- Wormholeのメッセージング機能でSuiと接続  
   https://wormhole.com/docs/tutorials/messaging/sui-connect/
 
-### Circle の CCTP（USDC 用）
-- USDC のクロスチェーン転送の概要
+### CircleのCCTP（USDC用）
+- USDCのクロスチェーン転送の概要
 
 </div>
 
 ---
 
-# Sui 上での AI エージェント構築
+# SuiでのAIエージェント構築
 <div class="columns compact-sm">
 
 <div>
 
 ### エージェントロジック
-- オンチェーンのアクションは Move スマートコントラクトで定義
+- オンチェーンでのアクションはMoveスマートコントラクトで定義します。
 
 ### オラクルと自動化
-- データフィードを接続し、スポンサー付きトランザクションで自動化
+- データフィードを接続し、スポンサー付きトランザクションでプロセスを自動化します。
 
-### 外部 AI モデル
-- 意思決定にオフチェーンの AI を統合
+### 外部AIモデル
+- 意思決定にオフチェーンのAIモデルを統合します。
 
 ### セキュリティ
-- Move のケイパビリティとアクセス制御を活用
+- Moveのケイパビリティとアクセス制御を活用します。
 
 </div>
 
 <div>
 
 ### Nimbus AI Agent Kit
-1. このキットは Sui 上で AI エージェントを構築するためのサポートを提供  
-2. ウォレット残高の取得をサポート  
-3. 複数の Sui DeFi プロトコルとの連携をサポート  
+1. このキットはSui上でAIエージェントを構築するためのサポートを提供します。  
+2. ウォレット残高の取得をサポートします。  
+3. 複数のSui DeFiプロトコルとの連携をサポートします。  
 
 https://agent.getnimbus.io/
 
@@ -312,19 +319,20 @@ https://agent.getnimbus.io/
 ---
 
 # 演習
+<br/>
 <div class="compact-sm">
 
-- **サンプル AI エージェントキット:**  
+- **サンプルAIエージェントキット:**  
   https://docs.getnimbus.io/sui-ai-agent/introduction  
 - **SDK:**  
   https://www.npmjs.com/package/@flowx-finance/sdk  
 
-### シンプルな AI エージェントを作る
-- SDK でウォレット残高を監視  
-- Move で定義したロジックでオンチェーンのアクションを実行
+### シンプルなAIエージェントを作成する
+- SDKでウォレット残高を監視します。  
+- Moveで定義したロジックに基づき、オンチェーンアクションを実行します。
 
 </div>
 
 ---
 
-# ありがとうございました。
+# Thank you!
