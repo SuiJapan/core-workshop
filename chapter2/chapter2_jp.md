@@ -138,181 +138,181 @@ style: |
   }
 ---
 
-# Introduction to Move
+# Move入門
 
-### Objectives:
-• Build smart contracts on Sui with strong foundations and patterns
-• Learn Move language and the unique Sui object-centric model
-
----
-
-# Agenda
-
-1. What is Move?
-2. Toolchain & Environment Setup
-3. Variables, Data Types, and Mutability
-4. Sui's Smart Contract Patterns
-5. Capabilities in Sui
-6. Error Handling and Security Practices
+### 目標
+• 堅牢な基盤と設計パターンに基づいてSui上にスマートコントラクトを構築する
+• Move言語とSui特有のオブジェクト中心モデルを学ぶ
 
 ---
 
-# Learning Objectives
+# アジェンダ
 
-• Key takeaways: Move ensures safety, Sui's object model and capabilities enable advanced patterns.
-• Explore resources and exercises for deeper learning.
-• Sui Developer Portal for further resources.
+1. Moveとは？
+2. ツールチェーンと環境構築
+3. 変数・データ型・可変性
+4. Suiのスマートコントラクト設計パターン
+5. SuiにおけるCapability（権限）
+6. エラー処理とセキュリティ実践
+
+---
+
+# 学習目標
+
+• 重要なポイント: Moveは安全性を重視し、SuiのオブジェクトモデルとCapabilityが高度なパターンを可能にする。
+• さらなる学習のためのリソースと演習を紹介。
+• 追加リソース: Sui Developer Portal。
 (https://sui.io/developers)
 
 ---
 
-# What is Move?
+# Moveとは？
 
-### Safe & Flexible
-Move is designed for secure and adaptable smart contracts on Sui.
+### 安全かつ柔軟
+Moveは、Sui上で安全かつ柔軟に動作するスマートコントラクトのために設計されています。
 
-### Resource-oriented
-It manages assets safely, preventing common vulnerabilities like reentrancy.
+### リソース指向
+資産を安全に管理し、リエントランシーのような一般的な脆弱性を防ぎます。
 
-### Sui Usage
-Move controls on-chain objects, ensuring efficient and secure data management.
+### Suiでの利用
+Moveはオンチェーンのオブジェクトを制御し、効率的かつ安全なデータ管理を実現します。
 
 ---
 
-# Toolchain & Environment Setup
+# ツールチェーンと環境構築
 
-### **Install Sui CLI**
-Ensure scarcity and prevent duplication of digital assets.
+### **Sui CLIのインストール**
+デジタル資産の希少性を保証し、複製を防ぎます。
 
-### **Initialize a new package**
+### **新しいパッケージを初期化**
 `sui move new <project>`
 
 ---
 
-## Variables, Data Types, and Mutability
+## 変数・データ型・可変性
 
-### Ownership model
-Variables follow Rust-like ownership rules for memory safety.
+### 所有権モデル
+変数はRustに類似した所有権規則に従い、メモリ安全性を確保します。
 
-### Data types
-- bool: true/false
-- u8, u64: unsigned integers
-- address: account identifiers
-- vector: dynamic arrays
+### データ型
+- bool: 真偽値（true/false）
+- u8, u64: 符号なし整数
+- address: アカウント識別子
+- vector: 可変長配列
 
-### Mutability
-`let` creates immutable variables, `let mut` makes them mutable.
+### 可変性
+`let` は不変変数を、`let mut` は可変変数を作成します。
 
 (https://move-book.com/reference/primitive-types)
 
 ---
 
-# Resources and Objects
+# リソースとオブジェクト
 
-### **Resources**
-Ensure scarcity and prevent duplication of digital assets.
+### **リソース**
+希少性を保証し、デジタル資産の複製を防ぎます。
 
-### **Objects**
-Sui's core data structures; can be owned, shared, or immutable.
+### **オブジェクト**
+Suiの中核データ構造。所有、共有、不変のいずれかになり得ます。
 
-### **Ownerships**
-Wrapping enforces single ownership to avoid unauthorized copies.
+### **所有権**
+Wrapping（ラップ）により単一所有を強制し、不正な複製を防ぎます。
 
-### **Transfer**
-Use transfer::transfer to safely move object ownership.
+### **移転（Transfer）**
+`transfer::transfer` を用いて、オブジェクトの所有権を安全に移転します。
 
 ---
 
 <!-- class: compact -->
 
-# Models and Functions
+# モジュールと関数
 
 <div class="columns">
 <div>
 
-### Modules
-Contain code defining structs and functions for organization.
+### モジュール
+構造体や関数を定義するコード単位で、プロジェクトを整理します。
 
-### Functions
-Serve as entry points implementing on-chain business logic.
+### 関数
+オンチェーンのビジネスロジックを実装するエントリポイントです。
 
 </div>
 <div>
 
-### Visibility
-**Public:** accessible within modules
-**Private:** restricted access
-**Entry:** callable from transactions
+### 可視性
+**Public:** モジュール外から呼び出し可能
+**Private:** モジュール内に限定
+**Entry:** トランザクションから呼び出し可能
 
-### Example
-A module creating and managing fungible tokens on Sui.
+### 例
+Sui上で代替可能トークン（Fungible Token）を作成・管理するモジュール。
 
 </div>
 </div>
 
 ---
 
-## Basic Structure of a Move Project
+## Moveプロジェクトの基本構成
 
 ### Move.toml
-- The main configuration file of the project
-- Contains information about the project name, dependencies, and published addresses
-- Similar to package.json in NodeJS or Cargo.toml in Rust
+- プロジェクトの主要な設定ファイル
+- プロジェクト名、依存関係、公開アドレスの情報を含む
+- Node.jsのpackage.jsonやRustのCargo.tomlに相当
 
 ### sources/
-- Directory containing the main source code of the project
-- .move files contain smart contract code
-- Each Move module is defined in a separate file
+- プロジェクトの主要なソースコードを格納するディレクトリ
+- .moveファイルにスマートコントラクトのコードを記述
+- 各Moveモジュールは別ファイルで定義
 
 ### tests/
-- Directory containing test files
-- Test files usually have the suffix _test.move
-- Used to write unit tests for smart contracts
+- テスト用のディレクトリ
+- テストファイルは通常 `_test.move` 接尾辞
+- スマートコントラクトのユニットテストを記述
 
 ---
 
-# Common Design Patterns
+# 代表的な設計パターン
 
-### Data as objects
-Sui's model stores data as objects (owned or shared)
+### データをオブジェクトとして扱う
+Suiのモデルはデータをオブジェクト（所有または共有）として保存します。
 
-### Capabilities in Sui
-Capabilities control access, ensuring only authorized actions
+### SuiのCapability（権限）
+Capabilityによってアクセスを制御し、許可された操作のみを許容します。
 
-### One-time Witness Pattern
-Ensures an action can only be performed once by a uniquely created object as proof.
+### One-time Witnessパターン
+一意に作成された証明オブジェクトにより、操作を一度だけ実行可能にします。
 
 ---
 
-# Security Considerations
+# セキュリティの考慮事項
 
 <div class="columns">
 <div>
 
-### Gas Optimization
-Minimize costs to avoid denial-of-service from expensive transactions.
+### ガス最適化
+高コストなトランザクションによるサービス拒否を避けるため、コストを最小化します。
 
 </div>
 <div>
 
-### Reentrancy Prevention
-Resource model helps block reentrancy attacks efficiently.
+### リエントランシー対策
+リソースモデルによりリエントランシー攻撃を効率的に阻止します。
 
-### Formal Verification
-Mathematically prove critical contract logic correctness.
+### 形式検証
+重要なコントラクトロジックの正しさを数学的に証明します。
 
 </div>
 </div>
 
 ---
 
-# Practical Exercises
+# 演習
 
-• Sui Documentation: Writing Your First Smart Contract for guidance.
+• 参考: Suiドキュメント「はじめてのスマートコントラクト」。
 (https://docs.sui.io/guides/developer/writing-your-first-smart-contract)
 
-• Build a smart contract: creating a token, transferring ownership, managing resources with capabilities.
+• スマートコントラクトを実装: トークン作成、所有権移転、Capabilityを用いたリソース管理。
 
 ---
 
-# Thank You.
+# ありがとうございました。
