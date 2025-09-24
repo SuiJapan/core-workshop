@@ -77,127 +77,127 @@ style: |
 ---
 
 # Sui 101
-## Introduction to Sui
+## Sui入門
 
-<p class="subtitle">Audience: Students, Web2 Devs, Crypto Curious</p>
-
----
-
-# Learning Objective
-
-✓ Understands the basics of Sui and blockchain
-
-✓ Set up a Sui wallet to interact with the network
-
-✓ Mint an NFT on the Sui blockchain
+<p class="subtitle">対象: 学生・Web2開発者・クリプトに興味がある人</p>
 
 ---
 
-# What is Sui?
+# 学習目標
 
-• A high-performance Layer 1 blockchain focused on speed and scalability
-• Centered around assets and objects
-• Uses the Move programming language
+✓ Sui とブロックチェーンの基礎を理解する
 
----
+✓ ネットワークとやり取りするために Sui ウォレットをセットアップする
 
-# How is Sui Different?
-## Object-Centric Model
-
-• Assets on the Sui blockchain are called **objects**
-• Each object has a unique ID and can store data or be modified
-• This model is different from account-based blockchains
+✓ Sui ブロックチェーン上で NFT をミントする
 
 ---
 
-# What is a blockchain?
+# Sui とは？
 
-• Distributed ledger technology
-• Immutable and transparent record-keeping
-• Transactions stored across a network of computers
-
----
-
-# Intro to Move Language and Sui CLI
-
-• Move language is a safe and flexible smart contract programming language
-
-• Sui CLI is a command-line tool for interacting with the Sui network
+• 高速性とスケーラビリティに特化した高性能レイヤー1ブロックチェーン
+• 資産（アセット）とオブジェクトを中心とした設計
+• Move プログラミング言語を採用
 
 ---
 
-# Basic Transactions:
-## Mint an NFT, Send Tokens
+# Sui の特長
+## オブジェクト中心モデル
 
-• Mint a simple NFT on Sui testnet
-
-• Transfer tokens to another wallet
+• Sui 上の資産は **オブジェクト** と呼ばれる
+• 各オブジェクトは一意の ID を持ち、データを保持・更新できる
+• アカウントベースのブロックチェーンとは異なるモデル
 
 ---
 
-# Quiz + Hands-On Challenge
+# ブロックチェーンとは？
+
+• 分散型台帳技術
+• 変更不能で透明性の高い記録管理
+• 取引はネットワーク上の多数のコンピュータに保存される
+
+---
+
+# Move 言語と Sui CLI 入門
+
+• Move 言語は、安全かつ柔軟なスマートコントラクト用プログラミング言語
+
+• Sui CLI は、Sui ネットワークと対話するためのコマンドラインツール
+
+---
+
+# 基本的なトランザクション
+## NFT のミントとトークン送金
+
+• Sui テストネットでシンプルな NFT をミント
+
+• 別のウォレットへトークンを送金
+
+---
+
+# クイズ + 実践チャレンジ
 
 <div class="columns">
 <div>
 
-### Mini Quiz
+### ミニクイズ
 
-• What is Sui's object model?
-• How is Move different from Solidity?
+• Sui のオブジェクトモデルとは？
+• Move は Solidity とどう違う？
 
 </div>
 <div>
 
-### Challenge
+### チャレンジ
 
-• Deploy an NFT smart contract
-• Mint NFT by calling smart contract function
+• NFT スマートコントラクトをデプロイ
+• コントラクト関数を呼び出して NFT をミント
 
-**Screenshot & Submit**
+**スクリーンショットを撮って提出**
 
 </div>
 </div>
 
 ---
 
-# Summary
+# まとめ
 
-• What blockchain is and how Sui works
-• How Sui's object-centric model is unique
-• Basic wallet setup, Move, and transactions
+• ブロックチェーンの概要と Sui の仕組み
+• Sui のオブジェクト中心モデルの特長
+• ウォレットの基本設定、Move、基本トランザクション
 
-### Resources
+### 参考資料
 
 • [docs.sui.io](https://docs.sui.io)
-• Sui Wallet
-• Sui Developer Forum
+• Sui ウォレット
+• Sui 開発者フォーラム
 
 ---
 
-# Set up you Slush Wallet
+# Slush ウォレットをセットアップ
 
-### Install Slush
-### Back Up Seed Phrase
-### Get Sui from Faucet
-
----
-
-# Get SUI from the Faucet
-
-1. Go to a Sui testnet faucet site
-2. Paste your address
-3. Request testnet tokens
+### Slush をインストール
+### シードフレーズをバックアップ
+### Faucet から SUI を入手
 
 ---
 
-# Explore Your Wallet Interface
+# Faucet で SUI を受け取る
 
-1. Token balance in SUI
-2. Minted NFT collections
+1. Sui テストネットの Faucet サイトへアクセス
+2. 自分のアドレスを貼り付け
+3. テストネットトークンを請求
 
 ---
 
-# Install Sui CLI
+# ウォレット画面を確認
+
+1. SUI のトークン残高
+2. ミント済みの NFT コレクション
+
+---
+
+# Sui CLI をインストール
 
 **macOS** `brew install sui`
 
