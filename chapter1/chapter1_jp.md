@@ -7,7 +7,7 @@ style: |
   section {
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg, #0a1628 0%, #1a2332 100%);
-    padding: 20px;
+    padding: 7vw;
     line-height: 1.35;
     text-align: left;
     font-size: 28px;
@@ -134,6 +134,8 @@ style: |
     font-size: 26.6px;
   }
 ---
+
+![bg image](../common/cover-bg.svg)
 
 # Sui 101
 ## Sui入門
