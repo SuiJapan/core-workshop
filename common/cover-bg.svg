@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="1920"
+  height="1080"
+  viewBox="0 0 1920 1080"
+>
+  <rect
+    x="0"
+    y="0"
+    width="1920"
+    height="1080"
+    fill="#030f1c"
+  />
+  <path
+    d="M 0 60 1920 60"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 180 1920 180"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 300 1920 300"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 420 1920 420"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 540 1920 540"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 660 1920 660"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 780 1920 780"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 900 1920 900"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 0 1020 1920 1020"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 60 0 60 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 60 0 60 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 180 0 180 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 300 0 300 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 420 0 420 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 540 0 540 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 660 0 660 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 780 0 780 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 900 0 900 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1020 0 1020 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1140 0 1140 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1260 0 1260 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1380 0 1380 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1500 0 1500 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1620 0 1620 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1740 0 1740 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="M 1860 0 1860 1080"
+    stroke="#333333"
+    stroke-width="3"
+  />
+  <path
+    d="
+      M 60 40
+      L 1860 40
+      A 20 20 90 0 1 1880 60
+      L 1880 1020
+      A 20 20 90 0 1 1860 1040
+      L 60 1040
+      A 20 20 90 0 1 40 1020
+      L 40 60
+      A 20 20 90 0 1 60 40
+      Z
+    "
+    stroke-width="5"
+    stroke="#4da2ff"
+    fill="none"
+  />
+  <circle cx="75" cy="75" r="15" fill="#4da2ff"/>
+  <circle cx="75" cy="1005" r="15" fill="#4da2ff"/>
+  <circle cx="1845" cy="75" r="15" fill="#4da2ff"/>
+  <circle cx="1845" cy="1005" r="15" fill="#4da2ff"/>
+</svg>
