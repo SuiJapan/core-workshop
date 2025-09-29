@@ -10,8 +10,9 @@ color: #ffffff
 # Move入門
 
 ### 目標
-• 堅牢な基盤と設計パターンに基づいてSui上にスマートコントラクトを構築する
-• Move言語とSui特有のオブジェクト中心モデルを学ぶ
+- 堅牢な基盤と設計パターンに基づいて  
+Sui上にスマートコントラクトを構築する
+- Move言語とSui特有のオブジェクト中心モデルを学ぶ
 
 ---
 
@@ -28,9 +29,9 @@ color: #ffffff
 
 # 学習目標
 
-• 重要なポイント: Moveは安全性を重視し、SuiのオブジェクトモデルとCapabilityが高度なパターンを可能にする。
-• さらなる学習のためのリソースと演習を紹介。
-• 追加リソース: Sui Developer Portal。
+- 重要なポイント: Moveは安全性を重視し、SuiのオブジェクトモデルとCapabilityが高度なパターンを可能にする。
+- さらなる学習のためのリソースと演習を紹介。
+- 追加リソース: Sui Developer Portal。
 (https://sui.io/developers)
 
 ---
@@ -179,10 +180,10 @@ Capabilityによってアクセスを制御し、許可された操作のみを�
 
 # 演習
 
-• 参考: Suiドキュメント「はじめてのスマートコントラクト」。
+- 参考: Suiドキュメント「はじめてのスマートコントラクト」。
 (https://docs.sui.io/guides/developer/writing-your-first-smart-contract)
 
-• スマートコントラクトを実装: トークン作成、所有権移転、Capabilityを用いたリソース管理。
+- スマートコントラクトを実装: トークン作成、所有権移転、Capabilityを用いたリソース管理。
 
 ---
 
