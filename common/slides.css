@@ -54,6 +54,11 @@ ul li:before {
   margin-left: -1em;
   width: 1em;
 }
+/* Keep list text on the same line as the custom marker when Markdown renders <li><p>... */
+ul li > p {
+  display: inline;
+  margin: 0;
+}
 ol {
   text-align: left !important;
   margin-top: 0.25em;
