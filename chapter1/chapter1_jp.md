@@ -138,11 +138,9 @@ color: #ffffff
 
 # CLI コマンドのウォークスルー
 
-① `sui client new-address` — 新しいアドレスを作成
-
-② `sui client transfer-sui` — SUI を送金
-
-③ `sui client call` — コントラクト関数を呼び出し
+1. `sui client new-address` — 新しいアドレスを作成
+2. `sui client transfer-sui` — SUI を送金
+3. `sui client call` — コントラクト関数を呼び出し
 
 ---
 
