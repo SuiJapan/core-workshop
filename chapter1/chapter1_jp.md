@@ -197,6 +197,8 @@ Docs: https://docs.sui.io/references/cli/client
 - Windows: `choco install sui`  
 - Linux: `brew install sui`  
 
+※本講義ではdevcontainerを用いるのでインストールは必須ではありません。
+
 ---
 
 ## 設定の確認・テストネットへの切り替え
