@@ -14,178 +14,288 @@ color: #ffffff
 
 ---
 
-# 学習目標
-
-- Sui とブロックチェーンの基礎を理解する
-- ネットワークとやり取りするために Sui ウォレットをセットアップする
-- Sui ブロックチェーン上で NFT をミントする
-
----
-
-# Sui とは？
-
-- 高速性とスケーラビリティに特化した高性能レイヤー1ブロックチェーン
-- 資産（アセット）とオブジェクトを中心とした設計
-- Move プログラミング言語を採用
+## 学習目標
+- Suiとブロックチェーンの基本を理解する  
+- ネットワークとやり取りするためにSlushを準備する  
+- SuiブロックチェーンでNFTを発行する  
 
 ---
 
-# Sui の特長
-## オブジェクト中心モデル
-
-- Sui 上の資産は **オブジェクト** と呼ばれる
-- 各オブジェクトは一意の ID を持ち、データを保持・更新できる
-- アカウントベースのブロックチェーンとは異なるモデル
+## Agenda
+- ブロックチェーンとは何か、Suiの仕組み  
+- Suiのオブジェクト中心モデルの特徴  
+- 基本的なウォレット設定、Move、トランザクション  
 
 ---
 
-# ブロックチェーンとは？
+## Resources
+- [docs.sui.io](http://docs.sui.io)
+- [Slush](https://slush.app/)
+- [Sui Developer Forum](https://forums.sui.io/)
+- [Sui Move Intro Course](https://github.com/sui-foundation/sui-move-intro-course)
 
-- 分散型台帳技術
-- 変更不能で透明性の高い記録管理
-- 取引はネットワーク上の多数のコンピュータに保存される
-
----
-
-# Move 言語と Sui CLI 入門
-
-- Move 言語は、安全かつ柔軟なスマートコントラクト用プログラミング言語
-
-- Sui CLI は、Sui ネットワークと対話するためのコマンドラインツール
 
 ---
 
-# 基本的なトランザクション
-## NFT のミントとトークン送金
-
-- Sui テストネットでシンプルな NFT をミント
-
-- 別のウォレットへトークンを送金
+## Suiとは?
+- 高速処理と高いスケーラビリティを実現するレイヤー1ブロックチェーン  
+- 資産とオブジェクトを中心にしたアーキテクチャ  
+- Move言語を用いたスマートコントラクト開発が可能  
 
 ---
 
-# クイズ + 実践チャレンジ
-
-<div class="columns">
-<div>
-
-### ミニクイズ
-
-- Sui のオブジェクトモデルとは？
-- Move は Solidity とどう違う？
-
-</div>
-<div>
-
-### チャレンジ
-
-- NFT スマートコントラクトをデプロイ
-- コントラクト関数を呼び出して NFT をミント
-
-**スクリーンショットを撮って提出**
-
-</div>
-</div>
+## Suiの特徴とは？
+### オブジェクト中心モデル
+- Suiブロックチェーン上の資産は「オブジェクト」  
+- 各オブジェクトは固有のIDを持ち、データを保存・変更可能  
+- アカウントベースのブロックチェーンとは異なる  
 
 ---
 
-# まとめ
-
-- ブロックチェーンの概要と Sui の仕組み
-- Sui のオブジェクト中心モデルの特長
-- ウォレットの基本設定、Move、基本トランザクション
-
-### 参考資料
-
-- [docs.sui.io](https://docs.sui.io)
-- Sui ウォレット
-- Sui 開発者フォーラム
+## ブロックチェーンとは？
+- 分散型台帳（Distributed Ledger Technology）を用いる  
+- 改ざんできない透明な取引記録を実現  
+- ネットワーク上の多数のコンピュータに取引履歴を分散保存  
 
 ---
 
-# Slush ウォレットをセットアップ
+## Move言語の紹介
+Move言語は、安全性と柔軟性を備えたスマートコントラクトのプログラミング言語です。  
 
-### Slush をインストール
-### シードフレーズをバックアップ
-### Faucet から SUI を入手
-
----
-
-# Faucet で SUI を受け取る
-
-1. Sui テストネットの Faucet サイトへアクセス
-2. 自分のアドレスを貼り付け
-3. テストネットトークンを請求
+Docs:  
+- https://docs.sui.io/concepts/sui-move-concepts
 
 ---
 
-# ウォレット画面を確認
+## SuiにおけるNFTとFTの比較
+### NFT (Non-Fungible Token)
+- 固有のIDを持つオンチェーン上のユニークなオブジェクト  
+- 名前、説明、画像など豊富なメタデータを保持可能  
+- 各NFTは独立したオブジェクトとして存在  
 
-1. SUI のトークン残高
-2. ミント済みの NFT コレクション
-
----
-
-# Sui CLI をインストール
-
-**macOS** `brew install sui`
-
-**Windows** `Winget install sui`
-
-**Linux** `0 ALTER`
+### FT (Fungible Token)
+- お金のように同じ価値を持つ単位  
+- Suiでは「Coin型」で表現される  
+- 分割したりまとめたりできる  
 
 ---
 
-# CLI コマンドのウォークスルー
+## Move言語によるNFTの実装例
+```move
+module workshop::nft;
 
-1. `sui client new-address` — 新しいアドレスを作成
-2. `sui client transfer-sui` — SUI を送金
-3. `sui client call` — コントラクト関数を呼び出し
+use std::string;
+use sui::url;
 
----
-
-## エントリ関数と構造体
-
-1. エントリ関数 = 直接実行できる関数
-2. 構造体 = カスタムデータ型
-
-```rust
-Module counter {
-  Struct Counter has key, store {
-    value: u64;
-  }
-  public entry fun increment
-    (my_counter: &mut Counter)
-    my_counter.value += 1;
-  }
+public struct MyNFT has key, store {
+    id: UID,
+    name: string::String,
+    url: url::Url,
 }
+
+public entry fun mint(name: vector<u8>, url_bytes: vector<u8>, ctx: &mut TxContext) {
+    let nft = MyNFT {
+        id: object::new(ctx),
+        name: name.to_string(),
+        url: url::new_unsafe_from_bytes(url_bytes),
+    };
+    transfer::public_transfer(nft, ctx.sender());
+}
+```
+---
+
+## Move言語によるFTの実装例
+```move
+module workshop::my_coin;
+
+use sui::coin::{Self, TreasuryCap};
+
+public struct MY_COIN has drop, store {}
+
+fun init(witness: MY_COIN, ctx: &mut TxContext) {
+    let (treasury_cap, metadata) = coin::create_currency<MY_COIN>(
+        witness,
+        6,
+        b"MYC",
+        b"My Coin",
+        b"",
+        option::none(),
+        ctx,
+    );
+    transfer::public_freeze_object(metadata);
+    transfer::public_transfer(treasury_cap, ctx.sender());
+}
+
+public entry fun mint(
+    treasury_cap: &mut TreasuryCap<MY_COIN>,
+    amount: u64,
+    recipient: address,
+    ctx: &mut TxContext,
+) {
+    let coin = coin::mint(treasury_cap, amount, ctx);
+    transfer::public_transfer(coin, recipient);
+}
+```
+---
+
+## Slush Walletを設定
+- Slushをインストール: https://slush.app/  
+- Seed Phraseをバックアップする  
+- テストネットSUIを請求する  
+
+---
+
+## Slushでテストネットに接続する
+1. 画面右下をタップしてウォレットをバックアップ → 設定を開く  
+2. “Network”をタップ  
+3. “Testnet”を選択する  
+
+---
+
+## SUIをFaucetサイトから手に入れる
+1. Suiのテストネットfaucetサイトにアクセス：https://faucet.sui.io/  
+2. アドレスをペーストする  
+3. テストネットSUIをリクエスト  
+
+---
+
+## ウォレットの操作画面を探検する
+1. SUIのトークンバランスを確認  
+2. ミントしたNFTを確認  
+
+---
+
+## 基本的なトランザクション
+### NFTのミント / トークンを送る
+- サンプルサイト（TestnetでNFTをMINT）: https://nft-mint-sample.vercel.app/  
+- 他のウォレットにトークンを送ってみよう  
+
+---
+
+## Suiでのガス代について
+1. すべてのトランザクションにはガス代としてSUIが必要  
+2. ガス代の用途：  
+   a. 計算処理  
+   b. オブジェクトの保存  
+3. テストネット用SUIは無料だが上限あり  
+4. デプロイ前に必ず残高を確認すること  
+
+Docs:  
+- https://docs.sui.io/concepts/tokenomics/gas-in-sui
+
+---
+
+## Sui CLIとは?
+Sui CLIは、Suiネットワークとやり取りするためのコマンドラインツールです。  
+
+Docs: https://docs.sui.io/references/cli/client
+
+---
+
+## Sui CLIのインストール
+- macOS: `brew install sui`  
+- Windows: `choco install sui`  
+- Linux: `brew install sui`  
+
+※本講義ではdevcontainerを用いるのでインストールは必須ではありません。
+
+---
+
+## 設定の確認・テストネットへの切り替え
+```bash
+# バージョン確認（インストール確認）
+sui --version
+
+# Testnet環境に切り替え
+sui client switch --env testnet
 ```
 
 ---
 
-# モジュールを確認
+## Sui CLIでアドレスのインポート
+```bash
+# Slushで作ったアドレスをインポート
+sui keytool import INPUT KEY_SCHEME
 
-1. Sui Explorer にアクセス
-   [https://suiscan.xyz/mainnet/home](https://suiscan.xyz/mainnet/home)
-
-2. 自分の Move モジュールを検索
-
----
-
-# よくある質問
-
-- Sui ウォレットのリカバリ手順は？
-- Sui ウォレットを dApp に接続するには？
-- Move の学習リソースはどこで見つかりますか？
-- このコースは本当に初心者向けですか？
+# インポートしたアドレスが有効か確認
+sui client active-address
+```
+Docs: https://docs.sui.io/references/cli/cheatsheet
 
 ---
 
-# 次回: ビルダートラック予告
-
-- コントラクトの作成とデプロイに注力
-- ガスとストレージの理解
+## Sui CLIでウォレットの中身を確認
+```bash
+# アクティブアドレスにガス代があるか確認
+sui client gas
+```
+Docs: https://docs.sui.io/references/cli/cheatsheet
 
 ---
 
-# ありがとうございました
+## Packageとは？
+- 1つ以上のモジュールをまとめた単位  
+- Suiブロックチェーン上でデプロイ・管理される  
+- バージョン管理が可能  
+- 例：NFTマーケット用の一連のモジュールを含むパッケージ  
+
+---
+
+## Moduleとは？
+- Move言語で書かれたコードの再利用可能な単位  
+- 関数や構造体などの定義をまとめたもの  
+- スマートコントラクトのロジックを実装する場所  
+- 例：NFTをミントする関数、コインを転送する関数など  
+
+---
+
+## Moduleを確認する方法
+1. Sui Explorer（例：Suiscan Testnet）: https://suiscan.xyz/testnet/home  
+2. Move moduleを検索する  
+   - サンプル: `0x9f992cc2430a1f442ca7a5ca7638169f5d5c00e0ebc3977a65e9ac6e497fe5ef`
+
+---
+
+## Mini Quiz / Challenge
+- NFTのスマートコントラクトをデプロイしてみよう！  
+- スマートコントラクトの関数を呼び出してNFTをミントしてみよう！  
+Repo: https://github.com/pnha2411/mint_nft  
+（スクリーンショットを提出）
+
+---
+
+## Quiz
+- Suiのオブジェクトモデルとは何でしょうか？  
+- MoveはSolidityとはどのように違うでしょうか？  
+
+---
+
+## セットアップガイド：NFTのスマートコントラクトのデプロイ
+```bash
+# 1/ リポジトリをクローンする
+git clone https://github.com/pnha2411/mint_nft
+
+# 2/ ディレクトリに移動
+cd move/nft-move
+
+# 3/ Testnetにデプロイ
+sui client publish --gas-budget 100000000
+```
+
+---
+
+## よくある質問
+- Suiウォレットの復元手順は？  
+- SuiウォレットをdAppsに接続する方法は？  
+- Moveについてさらに学べるリソースはどこ？  
+- このコースは本当に初心者向け？  
+
+---
+
+## Next: Builderトラックの概要
+- コントラクトの開発とデプロイを中心に学習  
+- ガス代やストレージの仕組みを理解する  
+
+---
+
+# Thank You.
