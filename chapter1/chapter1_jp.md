@@ -81,7 +81,7 @@ Docs:
 ---
 
 ## Move言語によるNFTの実装例
-```move
+```rust
 module workshop::nft;
 
 use std::string;
@@ -106,7 +106,7 @@ public entry fun mint(name: vector<u8>, url_bytes: vector<u8>, ctx: &mut TxConte
 
 ## Move言語によるFTの実装例
 
-```move
+```rust
 module examples::my_coin_new;
 
 use sui::coin_registry;
@@ -137,6 +137,7 @@ fun init(witness: MY_COIN_NEW, ctx: &mut TxContext) {
     transfer::public_transfer(metadata_cap, ctx.sender());
 }
 ```
+
 ---
 
 ## Slush Walletを設定
