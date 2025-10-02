@@ -214,10 +214,24 @@ sui client switch --env testnet
 ---
 
 ## Sui CLIでアドレスのインポート
-```bash
-# Slushで作ったアドレスをインポート
-sui keytool import INPUT KEY_SCHEME
 
+Slushで生成したニーモニックフレーズを使用してアドレスをインポートします：
+
+```bash
+sui keytool import "<ニーモニックフレーズ>" ed25519 --alias <任意の識別名>
+```
+
+- `<ニーモニックフレーズ>`: Slushでコピーした12単語のフレーズ（引用符で囲む）
+- `ed25519`: 鍵方式（Slushのデフォルト）
+- `--alias slush-wallet`: 任意のエイリアス名（識別用）
+
+**実行例：**
+```bash
+sui keytool import "word1 word2 word3 ... word12" ed25519 --alias my-slush-wallet
+```
+
+**インポート確認：**
+```bash
 # インポートしたアドレスが有効か確認
 sui client active-address
 ```
@@ -260,7 +274,7 @@ Docs: https://docs.sui.io/references/cli/cheatsheet
 ## Mini Quiz / Challenge
 - NFTのスマートコントラクトをデプロイしてみよう！  
 - スマートコントラクトの関数を呼び出してNFTをミントしてみよう！  
-Repo: https://github.com/pnha2411/mint_nft  
+Repo: https://github.com/SuiJapan/nft-mint-sample
 （スクリーンショットを提出）
 
 ---
@@ -274,10 +288,10 @@ Repo: https://github.com/pnha2411/mint_nft
 ## セットアップガイド：NFTのスマートコントラクトのデプロイ
 ```bash
 # 1/ リポジトリをクローンする
-git clone https://github.com/pnha2411/mint_nft
+git clone https://github.com/SuiJapan/nft-mint-sample
 
 # 2/ ディレクトリに移動
-cd move/nft-move
+cd contracts
 
 # 3/ Testnetにデプロイ
 sui client publish --gas-budget 100000000
