@@ -105,35 +105,36 @@ public entry fun mint(name: vector<u8>, url_bytes: vector<u8>, ctx: &mut TxConte
 ---
 
 ## Move言語によるFTの実装例
+
 ```move
-module workshop::my_coin;
+module examples::my_coin_new;
 
-use sui::coin::{Self, TreasuryCap};
+use sui::coin_registry;
 
-public struct MY_COIN has drop, store {}
+// コインの型識別子。コインは次のような型タグを持ちます:
+// `Coin<package_object::mycoin::MYCOIN>`
+// 型の名前がモジュール名と一致することを確認してください。
+public struct MY_COIN_NEW has drop {}
 
-fun init(witness: MY_COIN, ctx: &mut TxContext) {
-    let (treasury_cap, metadata) = coin::create_currency<MY_COIN>(
+// モジュール初期化関数はモジュール公開時に一度だけ呼び出されます。`TreasuryCap`が
+// 公開者に送信され、公開者がミントと焼却を制御します。`MetadataCap`も公開者に送信されます。
+fun init(witness: MY_COIN_NEW, ctx: &mut TxContext) {
+    let (builder, treasury_cap) = coin_registry::new_currency_with_otw(
         witness,
-        6,
-        b"MYC",
-        b"My Coin",
-        b"",
-        option::none(),
+        6, // 小数点以下の桁数
+        b"MY_COIN".to_string(), // シンボル
+        b"My Coin".to_string(), // コイン名
+        b"Standard Unregulated Coin".to_string(), // 説明
+        b"https://example.com/my_coin.png".to_string(), // アイコンURL
         ctx,
     );
-    transfer::public_freeze_object(metadata);
-    transfer::public_transfer(treasury_cap, ctx.sender());
-}
 
-public entry fun mint(
-    treasury_cap: &mut TreasuryCap<MY_COIN>,
-    amount: u64,
-    recipient: address,
-    ctx: &mut TxContext,
-) {
-    let coin = coin::mint(treasury_cap, amount, ctx);
-    transfer::public_transfer(coin, recipient);
+    let metadata_cap = builder.finalize(ctx);
+
+    // このオブジェクトをフリーズすると、タイトル、名前、アイコン画像を含むメタデータが不変になります。
+    // 可変性を許可したい場合は、代わりにpublic_share_objectで共有してください。
+    transfer::public_transfer(treasury_cap, ctx.sender());
+    transfer::public_transfer(metadata_cap, ctx.sender());
 }
 ```
 ---
