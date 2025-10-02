@@ -147,9 +147,9 @@ fun init(witness: MY_COIN_NEW, ctx: &mut TxContext) {
 ---
 
 ## Slushでテストネットに接続する
-1. 画面右下をタップしてウォレットをバックアップ → 設定を開く  
-2. “Network”をタップ  
-3. “Testnet”を選択する  
+1. 画面右下のユーザーアカウントボタンを押す
+2. `Settings`の`Network`をタップ
+3. `Testnet`を選択する  
 
 ---
 
