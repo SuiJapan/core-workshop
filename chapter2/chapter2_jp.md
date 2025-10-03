@@ -1,145 +1,18 @@
 ---
 marp: true
-theme: uncover
+theme: slides
 backgroundColor: #0a1628
 color: #ffffff
-style: |
-  section {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0a1628 0%, #1a2332 100%);
-    padding: 20px;
-    line-height: 1.35;
-    text-align: left;
-    font-size: 28px;
-  }
-  /* Headings */
-  h1, h2 {
-    color: #5eb3e6;
-    font-weight: 300;
-    margin-top: 0;
-    line-height: 1.15;
-  }
-  h1 {
-    font-size: 58.8px;
-    margin-bottom: 0.2em;
-  }
-  h2 {
-    font-size: 47.6px;
-    margin-bottom: 0.2em;
-  }
-  h3 {
-    font-size: 28px;
-    color: #ffffff;
-    margin-bottom: 0.2em;
-    text-align: left;
-  }
-  /* Lists */
-  ul {
-    text-align: left !important;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    padding-left: 1em;
-    list-style: none;
-  }
-  ul li {
-    text-align: left !important;
-    margin-bottom: 0.35em;
-    font-size: 22.4px;
-    line-height: 1.35;
-    position: relative;
-  }
-  ul li:before {
-    content: "✓ ";
-    color: #5eb3e6;
-    font-weight: bold;
-    display: inline-block;
-    margin-left: -1em;
-    width: 1em;
-  }
-  ol {
-    text-align: left !important;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    padding-left: 1.2em;
-  }
-  ol li {
-    font-size: 22.4px;
-    line-height: 1.35;
-    margin-bottom: 0.35em;
-  }
-  /* Code */
-  code {
-    background-color: #1e2936;
-    color: #5eb3e6;
-    padding: 0.2em 0.4em;
-    border-radius: 4px;
-    font-size: 26.6px;
-  }
-  pre {
-    background-color: #1e2936;
-    border: 1px solid #2a3f5f;
-    border-radius: 8px;
-    padding: 0.7em;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    font-size: 25.2px;
-  }
-  /* Layout helpers */
-  .columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2em;
-    text-align: left;
-  }
-  .compact {
-    font-size: 25.2px;
-  }
-  .compact h3 {
-    font-size: 30.8px;
-    margin-bottom: 0.15em;
-  }
-  .compact ul li {
-    font-size: 26.6px;
-    margin-bottom: 0.25em;
-    line-height: 1.25;
-  }
-  .compact p {
-    font-size: 25.2px;
-    line-height: 1.25;
-  }
-  /* Slightly more compact variant for dense slides */
-  .compact-sm {
-    font-size: 24.6px;
-  }
-  .compact-sm h3 {
-    font-size: 28px;
-    margin-bottom: 0.15em;
-  }
-  .compact-sm ul li,
-  .compact-sm ol li {
-    font-size: 25.8px;
-    line-height: 1.28;
-    margin-bottom: 0.25em;
-  }
-  /* Text */
-  p {
-    font-size: 22.4px;
-    text-align: left;
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-    line-height: 1.35;
-  }
-  a {
-    color: #5eb3e6;
-    font-size: 26.6px;
-  }
 ---
+
+![bg cover](../common//cover-bg.svg)
 
 # Move入門
 
 ### 目標
-• 堅牢な基盤と設計パターンに基づいてSui上にスマートコントラクトを構築する
-• Move言語とSui特有のオブジェクト中心モデルを学ぶ
+- 堅牢な基盤と設計パターンに基づいて  
+Sui上にスマートコントラクトを構築する
+- Move言語とSui特有のオブジェクト中心モデルを学ぶ
 
 ---
 
@@ -156,9 +29,9 @@ style: |
 
 # 学習目標
 
-• 重要なポイント: Moveは安全性を重視し、SuiのオブジェクトモデルとCapabilityが高度なパターンを可能にする。
-• さらなる学習のためのリソースと演習を紹介。
-• 追加リソース: Sui Developer Portal。
+- 重要なポイント: Moveは安全性を重視し、SuiのオブジェクトモデルとCapabilityが高度なパターンを可能にする。
+- さらなる学習のためのリソースと演習を紹介。
+- 追加リソース: Sui Developer Portal。
 (https://sui.io/developers)
 
 ---
@@ -307,10 +180,10 @@ Capabilityによってアクセスを制御し、許可された操作のみを�
 
 # 演習
 
-• 参考: Suiドキュメント「はじめてのスマートコントラクト」。
+- 参考: Suiドキュメント「はじめてのスマートコントラクト」。
 (https://docs.sui.io/guides/developer/writing-your-first-smart-contract)
 
-• スマートコントラクトを実装: トークン作成、所有権移転、Capabilityを用いたリソース管理。
+- スマートコントラクトを実装: トークン作成、所有権移転、Capabilityを用いたリソース管理。
 
 ---
 
