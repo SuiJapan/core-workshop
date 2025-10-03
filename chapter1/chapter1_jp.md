@@ -222,7 +222,7 @@ Slushで生成したニーモニックフレーズを使用してアドレスを
 sui keytool import "<ニーモニックフレーズ>" ed25519 --alias <任意の識別名>
 ```
 
-- `<ニーモニックフレーズ>`: Slushでコピーした12単語のフレーズ（引用符で囲む）
+- `"<ニーモニックフレーズ>"`: Slushでコピーした12単語のフレーズ（引用符で囲む）
 - `ed25519`: 鍵方式（Slushのデフォルト）
 - `--alias slush-wallet`: 任意のエイリアス名（識別用）
 
@@ -231,10 +231,14 @@ sui keytool import "<ニーモニックフレーズ>" ed25519 --alias <任意の
 sui keytool import "word1 word2 word3 ... word12" ed25519 --alias my-slush-wallet
 ```
 
+---
+
 **インポート確認：**
 ```bash
 # インポートしたアドレスが有効か確認
-sui client active-address
+sui client addresses
+# 異なる場合は変更
+sui client switch --address <0x***>
 ```
 Docs: https://docs.sui.io/references/cli/cheatsheet
 
