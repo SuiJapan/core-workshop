@@ -10,7 +10,7 @@ color: #ffffff
 # Move入門
 
 ### 目標
-- 堅牢な基盤と設計パターンに基づいて  
+- 堅牢な基盤と設計パターンに基づいて
 Sui上にスマートコントラクトを構築する
 - Move言語とSui特有のオブジェクト中心モデルを学ぶ
 
@@ -30,8 +30,8 @@ Sui上にスマートコントラクトを構築する
 
 # 学習目標（再確認）
 
-- Moveの**安全性**とSuiの**オブジェクトモデル**の勘所を掴む  
-- 既存リポの**Moveパッケージを自分でpublish**してみる  
+- Moveの**安全性**とSuiの**オブジェクトモデル**の勘所を掴む
+- 既存リポの**Moveパッケージを自分でpublish**してみる
 - **CLIでNFTをmint**して確認できる
 
 > 次回：**自作のNFTコントラクト**を作る体験をする
@@ -40,17 +40,17 @@ Sui上にスマートコントラクトを構築する
 
 # Moveとは？
 
-- **安全**：コピー/破棄の可否を型（Abilities）で制御  
-- **リソース指向**：資産の二重発行や紛失を型で抑制  
+- **安全**：コピー/破棄の可否を型（Abilities）で制御
+- **リソース指向**：資産の二重発行や紛失を型で抑制
 - **Sui**：リソースを**オブジェクト（UID付き）**として保存
 
 ---
 
 # ツールチェーンと環境構築（概要）
 
-- Sui CLI / Sui Wallet  
-- Testnet切替 & Faucet  
-- `sui move build / test` でローカル検証  
+- Sui CLI / Sui Wallet
+- Testnet切替 & Faucet
+- `sui move build / test` でローカル検証
 - エクスプローラ：Sui Vision（Testnet）
 
 ---
@@ -88,7 +88,7 @@ let bytes: vector<u8> = vector[1, 2, 3];
 
 ## 変数・データ型・可変性②：可変性と参照
 
-- `let` は**不変**、`let mut` で**可変**  
+- `let` は**不変**、`let mut` で**可変**
 - 値を直接持つ以外に、**参照**も使える
   - 読み取り：`&T` / 変更：`&mut T`
 
@@ -109,7 +109,7 @@ bump(&mut count); // 参照で渡して更新
 
 ## 変数・データ型・可変性③：文字列と“よくある落とし穴”
 
-- 文字列は `vector<u8>`（UTF-8推奨）で表現  
+- 文字列は `vector<u8>`（UTF-8推奨）で表現
   - CLIの `--args "hello"` は、期待型が `vector<u8>` なら自動変換される
 - **落とし穴**
   - ベクタは可変：サイズ無制限に増やさない（ガス対策）
@@ -138,9 +138,9 @@ public fun set_name(name: vector<u8>) { /* ... */ }
 ## Suiのスマートコントラクト設計②
 ### `entry`とAPI境界
 
-- **`entry` = トランザクション入口**：外部から直接呼ばれる場所  
+- **`entry` = トランザクション入口**：外部から直接呼ばれる場所
 - **小さく、薄く** 作る（入力検証＋内部関数呼び出しに専念）
-- 内部ロジックは `public` / `public(package)` 関数へ分離  
+- 内部ロジックは `public` / `public(package)` 関数へ分離
 - 将来の変更に備えて、**公開APIを最小限に維持**
 
 ```move
@@ -155,8 +155,8 @@ fun internal_create(ctx: &mut TxContext) { /* 実処理 */ }
 ## Suiのスマートコントラクト設計③
 ### 状態更新・ガス・テストの基礎
 
-- **上限を決める**：ループ回数・`vector` 長さ・文字列サイズ  
-- **イベント/可観測性**：重要な変更はイベントで可視化（必要に応じて）  
+- **上限を決める**：ループ回数・`vector` 長さ・文字列サイズ
+- **イベント/可観測性**：重要な変更はイベントで可視化（必要に応じて
 - **テスト**：正常系＋失敗（権限なし・上限超えなど）を**両方**用意
 - **誤りの早期発見**：`assert!(cond, E_CODE)` で速やかに中断
 
@@ -171,24 +171,24 @@ assert!(vector::length(name) <= 64, E_TOO_LONG);
 
 # Capability（権限トークン）の考え方
 
-- Capを持つ人だけが**ミント/設定**などを実行可  
+- Capを持つ人だけが**ミント/設定**などを実行可
 - 誤配布防止・保管戦略（マルチシグ等）が重要
 
 ---
 
 # エラー処理とセキュリティ（実践）
 
-- `assert!(cond, E_CODE)` で**早期失敗**  
-- 共有オブジェクトは慎重に（競合/コスト）  
+- `assert!(cond, E_CODE)` で**早期失敗**
+- 共有オブジェクトは慎重に（競合/コスト）
 - ループ/ベクタに**上限**（ガスDoS回避）
 
 ---
 
 # ここからハンズオン（今回の方針）
 
-- **今回はNFTのコントラクトは作りません**  
-- 既存リポ：**SuiJapan/nft-mint-sample** のコードを**自分でpublish**  
-- そのパッケージに **CLIから`move_call`** してNFTをmint  
+- **今回はNFTのコントラクトは作りません**
+- 既存リポ：**SuiJapan/nft-mint-sample** のコードを**自分でpublish**
+- そのパッケージに **CLIから`move_call`** してNFTをmint
 - `sui move new` は**別で**実行し、**ファイル構成の観察のみ**
 
 ---
@@ -217,7 +217,7 @@ mkdir -p ~/tmp && cd ~/tmp
 sui move new sample_pkg && tree -a sample_pkg
 ```
 
-- `Move.toml` / `sources/` / `tests/` の最小構成を確認  
+- `Move.toml` / `sources/` / `tests/` の最小構成を確認
 - 用が済んだら削除OK
 
 ---
@@ -260,15 +260,15 @@ cd <あなたの>/nft-mint-sample/contracts
 sui client publish --gas-budget 100000000
 ```
 
-- 出力JSONの `packageId` を控える（**今回の主役**）  
+- 出力JSONの `packageId` を控える（**今回の主役**）
 - 以降の `--package` に**あなたの** `packageId` を使う
 
 ---
 
 # 4. モジュール/関数の位置（復習）
 
-- モジュール名：`nft`  
-- 関数：`mint`（name, description, image_url を受け取り、送信者に転送）  
+- モジュール名：`nft`
+- 関数：`mint`（name, description, image_url を受け取り、送信者に転送）
 - 呼び出しは `entry` 関数を **CLIの `call`** で行う
 
 > 具体的なコードは `contracts/sources/nft.move` を参照
@@ -286,7 +286,7 @@ sui client call \
   --gas-budget 100000000
 ```
 
-- 3つの **文字列引数**：`name` / `description` / `image_url`  
+- 3つの **文字列引数**：`name` / `description` / `image_url`
 - 成功したら **Tx Digest / Created Object** が返る
 
 ---
@@ -322,17 +322,17 @@ pnpm dev -- --host
 
 # トラブルシュート（よくある）
 
-- **InsufficientGas**：`--gas-budget` を増やす / Faucetで補充  
-- **Function not found**：`--package`（誤ID）、`--module nft`、`--function mint` を再確認  
-- **Different network**：envがtestnetか再確認（CLI/Wallet/Explorer）  
+- **InsufficientGas**：`--gas-budget` を増やす / Faucetで補充
+- **Function not found**：`--package`（誤ID）、`--module nft`、`--function mint` を再確認
+- **Different network**：envがtestnetか再確認（CLI/Wallet/Explorer）
 - **引数の型エラー**：3つとも**文字列**で渡す
 
 ---
 
 # まとめ（今回）
 
-- 既存リポの **Moveパッケージを自分の名義でpublish**  
-- **packageId** を使って **CLIからmint**  
+- 既存リポの **Moveパッケージを自分の名義でpublish**
+- **packageId** を使って **CLIからmint**
 - 構成理解のために `sui move new` で骨格を確認（**デプロイはしない**）
 
 > 次回：**自作のNFTコントラクト**を作ってpublish & 呼び出し
@@ -341,7 +341,7 @@ pnpm dev -- --host
 
 # 参考リンク
 
-- Move Book：<https://move-book.com/>  
-- Sui Dev Portal：<https://sui.io/developers>  
-- リポ（nft-mint-sample）：<https://github.com/SuiJapan/nft-mint-sample>  
+- Move Book：<https://move-book.com/>
+- Sui Dev Portal：<https://sui.io/developer
+- リポ（nft-mint-sample）：<https://github.com/SuiJapan/nft-mint-sample>
 - Sui Vision（Testnet）：<https://suivision.xyz/>（右上でTestnet選択）
