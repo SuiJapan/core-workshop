@@ -131,16 +131,6 @@ public fun set_name(name: vector<u8>) { /* ... */ }
 - **共有** は「複数人が更新する必要」がある時のみ
 - **不変共有** は読み取り専用の配布に最適（コスト安）
 
-```rust
-use sui::object::UID;
-
-struct Profile has key {
-  id: UID,
-  name: vector<u8>,
-  level: u64,
-}
-```
-
 > 迷ったら**単一所有**。共有は同期やコストが増えるため慎重に。
 
 ---
