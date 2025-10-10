@@ -107,7 +107,7 @@ bump(&mut count); // 参照で渡して更新
 
 ---
 
-# 変数・データ型・可変性③：文字列と“よくある落とし穴”
+## 変数・データ型・可変性③：文字列と“よくある落とし穴”
 
 - 文字列は `vector<u8>`（UTF-8推奨）で表現  
   - CLIの `--args "hello"` は、期待型が `vector<u8>` なら自動変換される
@@ -123,14 +123,15 @@ public fun set_name(name: vector<u8>) { /* ... */ }
 
 ---
 
-## Suiのスマートコントラクト設計①：オブジェクト設計の最初の一歩
+## Suiのスマートコントラクト設計①
+### オブジェクト設計の最初の一歩
 
-- **オブジェクト = UID + データ + 所有者**  
+- **オブジェクト = UID + データ + 所有者**
 - まずは **単一所有** で設計（個人のNFT/プロフィール等）
-- **共有** は「複数人が更新する必要」がある時のみ  
+- **共有** は「複数人が更新する必要」がある時のみ
 - **不変共有** は読み取り専用の配布に最適（コスト安）
 
-```move
+```rust
 use sui::object::UID;
 
 struct Profile has key {
@@ -144,7 +145,8 @@ struct Profile has key {
 
 ---
 
-# Suiのスマートコントラクト設計②：`entry`とAPI境界
+## Suiのスマートコントラクト設計②
+### `entry`とAPI境界
 
 - **`entry` = トランザクション入口**：外部から直接呼ばれる場所  
 - **小さく、薄く** 作る（入力検証＋内部関数呼び出しに専念）
@@ -160,7 +162,8 @@ fun internal_create(ctx: &mut TxContext) { /* 実処理 */ }
 
 ---
 
-# Suiのスマートコントラクト設計③：状態更新・ガス・テストの基礎
+## Suiのスマートコントラクト設計③
+### 状態更新・ガス・テストの基礎
 
 - **上限を決める**：ループ回数・`vector` 長さ・文字列サイズ  
 - **イベント/可観測性**：重要な変更はイベントで可視化（必要に応じて）  
@@ -215,7 +218,7 @@ sui client faucet
 
 ---
 
-# 1-A. 「構成だけ見る」ための `sui move new`
+## 1-A. 「構成だけ見る」ための `sui move new`
 
 > これは**デプロイしません**。構成を知るための見学用。
 
@@ -301,14 +304,14 @@ sui client call \
 # 6. ミント結果を確認
 
 ```bash
-# 自分のオブジェクト一覧から探す
-sui client objects --owner $(sui client active-address)
+# NFTのオブジェクトIDから検索する
+sui client objects {object_id}
 
 # もしくはブラウザでエクスプローラを開いて
 # Tx Digest / Object ID を検索（Testnet）
 ```
 
-- オブジェクト詳細で `name/description/image_url` を確認  
+- オブジェクト詳細で `name/description/image_url` を確認
 - ウォレットの **Objects** タブにも表示されます
 
 ---
