@@ -69,19 +69,20 @@ sui keytool import "<your 12-24 word mnemonic here>" ed25519
 
 ## 変数・データ型・可変性①：基本の型とリテラル
 
-- **整数**：`u8, u16, u32, u64, u128, u256`  
-- **真偽**：`bool`（`true/false`）  
-- **アドレス**：`address`（例 `@0x42`）  
+- **整数**：`u8, u16, u32, u64, u128, u256`
+- **真偽**：`bool`（`true/false`）
+- **アドレス**：`address`（例 `@0x42`）
 - **配列**：`vector<T>`（長さ可変・0始まり）
 
-```move
+```rust
 let n: u64 = 42;
 let ok: bool = true;
 let who: address = @0x42;
 let bytes: vector<u8> = vector[1, 2, 3];
 ```
 
-> 文字列型は**無い**：文字列は一般に **`vector<u8>`** で表現します。
+> 文字列型は**無い**：文字列は `vector<u8>`で表現するか､
+> 標準ライブラリ `std::string`を使用する｡
 
 ---
 
@@ -122,7 +123,7 @@ public fun set_name(name: vector<u8>) { /* ... */ }
 
 ---
 
-# Suiのスマートコントラクト設計①：オブジェクト設計の最初の一歩
+## Suiのスマートコントラクト設計①：オブジェクト設計の最初の一歩
 
 - **オブジェクト = UID + データ + 所有者**  
 - まずは **単一所有** で設計（個人のNFT/プロフィール等）
