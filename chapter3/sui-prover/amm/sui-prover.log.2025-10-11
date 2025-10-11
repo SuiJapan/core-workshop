@@ -1,0 +1,19 @@
+2025-10-11T08:55:47.655087Z DEBUG sui_prover: Sui-Prover CLI version: 0.0.2
+2025-10-11T08:55:51.483460Z  INFO move_prover_boogie_backend::generator: preparing module 0x0::simple_lp
+2025-10-11T08:55:51.740332Z  INFO move_prover_boogie_backend::boogie_backend::bytecode_translator: generating verification conditions for 230 module(s)
+2025-10-11T08:55:51.760918Z  INFO move_prover_boogie_backend::boogie_backend::bytecode_translator: 81 verification conditions
+2025-10-11T08:55:51.761008Z DEBUG move_prover_boogie_backend::generator: writing boogie to `output/spec_no_abort_check.bpl`
+2025-10-11T08:55:51.761790Z  INFO move_prover_boogie_backend::boogie_backend::boogie_wrapper: running solver
+2025-10-11T08:55:51.761797Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: command line: /usr/local/Cellar/sui-prover/0.3.67/bin/boogie -inferModifies -enhancedErrorMessages:1 -printVerifiedProceduresCount:0 -printModel:1 -proverOpt:O:smt.QI.LAZY_THRESHOLD=100 -vcsCores:4 -proverOpt:O:smt.QI.EAGER_THRESHOLD=100 output/spec_no_abort_check.bpl -proverOpt:O:model_validate=true -proverOpt:PROVER_PATH=/usr/local/opt/z3/bin/z3
+2025-10-11T08:55:51.761808Z DEBUG move_prover_boogie_backend::boogie_backend::prover_task_runner: running Boogie command with seed 0
+2025-10-11T08:55:52.790686Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: analyzing boogie output
+2025-10-11T08:55:52.800667Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: writing boogie log to output/spec_no_abort_check.bpl.log
+2025-10-11T08:55:52.810924Z  INFO move_prover_boogie_backend::boogie_backend::bytecode_translator: generating verification conditions for 230 module(s)
+2025-10-11T08:55:52.829131Z  INFO move_prover_boogie_backend::boogie_backend::bytecode_translator: 81 verification conditions
+2025-10-11T08:55:52.829304Z DEBUG move_prover_boogie_backend::generator: writing boogie to `output/simple_lp::withdraw_spec.bpl`
+2025-10-11T08:55:52.830072Z  INFO move_prover_boogie_backend::boogie_backend::boogie_wrapper: running solver
+2025-10-11T08:55:52.830079Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: command line: /usr/local/Cellar/sui-prover/0.3.67/bin/boogie -printModel:1 -printVerifiedProceduresCount:0 -enhancedErrorMessages:1 -proverOpt:O:smt.QI.EAGER_THRESHOLD=100 -inferModifies -proverOpt:PROVER_PATH=/usr/local/opt/z3/bin/z3 -proverOpt:O:smt.QI.LAZY_THRESHOLD=100 output/simple_lp::withdraw_spec.bpl -vcsCores:4 -proverOpt:O:model_validate=true
+2025-10-11T08:55:52.830089Z DEBUG move_prover_boogie_backend::boogie_backend::prover_task_runner: running Boogie command with seed 0
+2025-10-11T08:55:54.396432Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: analyzing boogie output
+2025-10-11T08:55:54.396479Z DEBUG move_prover_boogie_backend::boogie_backend::boogie_wrapper: writing boogie log to output/simple_lp::withdraw_spec.bpl.log
+2025-10-11T08:55:54.397634Z  INFO move_prover_boogie_backend::generator: 0.000s building, 0.264s translation, 2.683s verification
