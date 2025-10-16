@@ -25,15 +25,19 @@ color: #ffffff
 
 ---
 
-<!-- _class: compact-sm -->
-
-# 高度な Move 概念
+## 高度な Move 概念
 
 | 概念 | 説明 | 高度なオブジェクトへの関連性 |
 |------------|-----------------|-----------------------------------|
 | オブジェクト中心のグローバルストレージ | Sui はグローバルストレージを廃し、固有 ID を持つオブジェクトによりスケーラビリティと並列実行を実現 | 既存のストレージモデルに代わる Sui の中核 |
 | アドレスとオブジェクト ID | オブジェクトとアカウントは 32 バイト識別子。オブジェクトは `id:UID` に ID を保持 | 一意なアドレス指定を担保し、オブジェクト管理に必須 |
 | key アビリティを持つオブジェクト | `key` が必要で、最初のフィールドは `id:UID`。バイトコード検証器により強制 | オンチェーンの第一級エンティティとしての定義 |
+
+---
+## 高度な Move 概念
+
+| 概念 | 説明 | 高度なオブジェクトへの関連性 |
+|------------|-----------------|-----------------------------------|
 | モジュール初期化子 | パッケージ公開時に 1 度だけ実行される特別関数。シングルトン等のセットアップに使用 | コントラクトの初期オブジェクト作成を容易化 |
 | エントリ関数 | PTB から呼び出し可能。オンチェーン乱数など原子的操作に用いられ、引数に制約あり | 複雑なトランザクションでのオブジェクト操作を強化 |
 | 所有権モデル | 単独所有（所有者のみ可変）、共有（誰でも可変・合意必要）、不変（変更不可） | アクセス制御とセキュリティ設計の要 |
@@ -78,9 +82,7 @@ https://docs.sui.io/concepts/transactions/prog-txn-blocks
 
 ---
 
-<!-- _class: compact -->
-
-# テスト、検証、ガス最適化
+## テスト、検証、ガス最適化
 
 ### テスト
 
@@ -93,31 +95,29 @@ Sui CLI でテスト実行:
 sui move test
 ```
 
+---
+### テストコードのサンプル
 ```move
 #[test]
 fun test_sword_create() {
     // テスト用のダミー TxContext を作成
     let mut ctx = tx_context::dummy();
-    
+
     // 剣を作成
     let sword = Sword {
         id: object::new(&mut ctx),
         magic: 42,
         strength: 7,
     };
-    
+
     // アクセサが正しい値を返すか検証
     assert!(sword.magic() == 42 && sword.strength() == 7, 1);
 }
 ```
 
-⇒ テストガイド | サンプルコード
-
 ---
 
-<!-- _class: compact -->
-
-# テスト、検証、ガス最適化
+## テスト、検証、ガス最適化
 
 ### 検証（Formal Verification）
 
@@ -138,14 +138,10 @@ public struct Registry has key {
     metadata: CoinMetadata<LOCKED_COIN>,
 }
 ```
-
-Sui Move Analyzer
-
 ---
 
-<!-- _class: compact -->
 
-# テスト、検証、ガス最適化
+## テスト、検証、ガス最適化
 
 ### ガス最適化
 
@@ -153,14 +149,11 @@ Sui Move Analyzer
 
 ```move
 // ロッカーを紐付けるために使用する共有オブジェクト
-///
 public struct Registry has key {
     id: UID,
     metadata: CoinMetadata<LOCKED_COIN>,
 }
-
 public struct LOCKED_COIN has drop {}
-
 public struct Locker has store {
     start_date: u64,
     final_date: u64,
@@ -169,16 +162,10 @@ public struct Locker has store {
 }
 ```
 
-スマートコントラクト関数のガス予算の確認:
-https://docs.sui.io/concepts/tokenomics/gas-in-sui
-
-⇒ Sui ガスモデル
-
 ---
 
-<!-- _class: compact -->
 
-# 共有オブジェクトと動的フィールド
+## 共有オブジェクトと動的フィールド
 
 ### 共有オブジェクト
 
@@ -187,13 +174,12 @@ https://docs.sui.io/concepts/tokenomics/gas-in-sui
 例: 分散型取引所（DEX）における共有オブジェクト。
 
 ```move
-// init は公開時に 1 度だけ呼ばれるため、
-/// 共有オブジェクト初期化の適所となることが多い。
+// init は公開時に 1 度だけ呼ばれるため、共有オブジェクト初期化の適所となることが多い。
 fun init(ctx: &mut TxContext) {
     transfer::transfer(ShopOwnerCap {
         id: object::new(ctx)
     }, ctx.sender());
-    
+
     // 共有化して誰でもアクセス可能に！
     transfer::share_object(DonutShop {
         id: object::new(ctx),
@@ -202,14 +188,9 @@ fun init(ctx: &mut TxContext) {
     })
 }
 ```
-
-https://docs.sui.io/concepts/object-ownership/shared
-
 ---
 
-<!-- _class: compact-sm -->
-
-# 共有オブジェクトと動的フィールド
+## 共有オブジェクトと動的フィールド
 
 ### 動的フィールド
 
@@ -217,18 +198,24 @@ https://docs.sui.io/concepts/object-ownership/shared
 
 例: NFT にメタデータを動的に追加。
 
-動的フィールドには「フィールド」と「オブジェクトフィールド」の 2 種類があり、値の格納方法が異なる:
+動的フィールドには「Dinamic Field」と「Dinamic Object Field」の 2 種類があり、値の格納方法が異なる｡
+
+---
+
+## 共有オブジェクトと動的フィールド
+
+### 動的フィールド
 
 | 種類 | 説明 | モジュール |
 |------|-------------|--------|
-| フィールド | `store` を持つ任意の値を格納可能。ただしここにオブジェクトを格納するとラップされ、外部ツール（エクスプローラやウォレット等）から ID で直接アクセス不可。 | `dynamic_field` |
-| オブジェクトフィールド | 値はオブジェクト（`key` アビリティを持ち、`id: UID` が最初のフィールド）に限るが、ID で外部ツールからアクセス可能。 | `dynamic_object_field` |
+| Dinamic Field | `store` を持つ任意の値を格納可能。ただしここにオブジェクトを格納するとラップされ、外部ツール（エクスプローラやウォレット等）から ID で直接アクセス不可。 | `dynamic_field` |
+| Dinamic Object Field | 値はオブジェクト（`key` アビリティを持ち、`id: UID` が最初のフィールド）に限るが、ID で外部ツールからアクセス可能。 | `dynamic_object_field` |
 
 https://docs.sui.io/concepts/dynamic-fields
 
 ---
 
-# Clock オブジェクトと時間、分散型ガバナンス
+## Clock オブジェクトと時間、分散型ガバナンス
 
 ### Clock オブジェクトと時間
 オンチェーン時間にアクセスして、時間依存ロジックを記述。
@@ -237,8 +224,6 @@ https://docs.sui.io/concepts/dynamic-fields
 ### 分散型ガバナンス
 ケイパビリティと共有オブジェクトを用いてガバナンスを実装。
 例: SIPs（Sui Improvement Proposals）によるプロトコルアップグレードの投票。
-
-時間アクセス | SIPs リポジトリ
 
 ---
 
@@ -257,8 +242,6 @@ https://docs.sui.io/concepts/dynamic-fields
 詳細
 
 ---
-
-<!-- _class: compact -->
 
 # 実践演習
 
@@ -302,5 +285,5 @@ module example::marketplace {
 
 ---
 
-# ありがとうございました
+# Thank You
 
