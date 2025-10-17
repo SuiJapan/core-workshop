@@ -304,7 +304,7 @@ module workshop::child_link {
 
 ---
 
-## 8-11. Kiosk の主要パーツ
+## Kiosk の主要パーツ
 
 * **Kiosk**：資産を置く場所（多くの操作を第三者が安全に扱えるよう設計）
 * **KioskOwnerCap**：Kiosk に対する**所有者権限の証明**（オーナーだけが特権操作）
@@ -316,7 +316,7 @@ module workshop::child_link {
 
 ---
 
-## 8-12. アイテムの状態（ざっくり）
+## アイテムの状態（ざっくり）
 
 * **placed**：Kiosk に置いた状態。オーナーは取り出し可能。
 * **locked**：取り出し不可。**売買を経ないと**外に出せない（強い拘束）。
@@ -327,7 +327,7 @@ module workshop::child_link {
 
 ---
 
-## 8-13. TransferPolicy（何ができる？）
+## TransferPolicy（何ができる？）
 
 * 取引ごとに **TransferRequest** が作られ、Policy 側で検証・処理。
 * 代表例：
@@ -339,24 +339,10 @@ module workshop::child_link {
 
 > クリエイターは「どう転送されたら困るか」をルール化し、マーケットはそれを尊重して売買を成立させます。
 
----
-
-## 8-14. このワークショップ実装との関係
-
-* 今日は **最小の非 Kiosk 市場**で“所有権の移動”を体験します。
-* 実用化の順序例：
-
-  1. NFT タイプに **TransferPolicy** を実装（ロイヤリティ等）
-  2. 出品者ごとに **Kiosk** を作成 → NFT を **place / lock**
-  3. **list** → **purchase** のフローを UI/SDK で実装
-  4. 収益の回収や手数料の送金処理を**SDK**で補助
-* クライアントからは **Kiosk SDK（TypeScript）** を使うと実装が楽です。
-
-> まずは「動く最小形」を押さえ、のちに Kiosk へ段階的に移行するのが現実的です。
 
 ---
 
-## 8-15. 参考リンク
+##  参考リンク
 
 * Kiosk（標準ドキュメント）: [https://docs.sui.io/standards/kiosk](https://docs.sui.io/standards/kiosk)
 * Kiosk Apps: [https://docs.sui.io/standards/kiosk-apps](https://docs.sui.io/standards/kiosk-apps)
@@ -443,7 +429,7 @@ public fun emit_minted(n: vector<u8>) { event::emit(Minted { name: n }) }
 
 ---
 
-# 8. ワークショップ（ハンズオン開始）
+# ワークショップ（ハンズオン開始）
 
 * 目標：最小の **NFT** を作って動かす
 * 方式：講師の投影に合わせて **写経（code-along）**
@@ -453,7 +439,7 @@ public fun emit_minted(n: vector<u8>) { event::emit(Minted { name: n }) }
 
 ---
 
-## 8-1. 進め方
+##  進め方
 
 1. `sui move new nft_workshop` で新しいパッケージを作成
 2. NFTのコードを作成
@@ -462,7 +448,7 @@ public fun emit_minted(n: vector<u8>) { event::emit(Minted { name: n }) }
 
 ---
 
-## 8-2. 教材リポジトリ
+##  教材リポジトリ
 
 * リポジトリ：`SuiJapan/nft-mint-sample`
 
@@ -473,7 +459,7 @@ public fun emit_minted(n: vector<u8>) { event::emit(Minted { name: n }) }
 
 ---
 
-## 8-3. 新しいパッケージを作る
+## 新しいパッケージを作る
 
 **どこで実行する？** → リポジトリの**ルート**（`contracts/` と同じ階層）がおすすめ。
 
@@ -487,7 +473,7 @@ sui move new nft_workshop
 
 ---
 
-## 8-4. Move.toml の設定（名前付きアドレス）
+## Move.toml の設定（名前付きアドレス）
 
 `nft_workshop/Move.toml` に **`nft`**** アドレス** を追加します。
 
@@ -505,13 +491,13 @@ nft = "0x0"
 
 ---
 
-## 8-5. ファイル作成：`sources/nft.move`
+##  ファイル作成：`sources/nft.move`
 
 1. リポジトリで `contracts/nft.move` を開く
 2. nftのコントラクトを見本を見ながら作成してみよう
 
 ---
-## 8-6. 重要ポイント（コード解説）
+## 重要ポイント（コード解説）
 
 * **`module nft::nft`**：`Move.toml` の `[addresses] nft = "0x0"` とペア（名前付きアドレス）。
 * **`WorkshopNFT has key, store`**：オンチェーン第一級オブジェクト。最初のフィールドは **`id: UID`**** 必須**。
@@ -520,7 +506,7 @@ nft = "0x0"
 * **`assert!`**** による最小バリデーション**：空文字など明らかな不正を早期に弾く。
 ---
 
-## 8-7. Publish & Call（動かす）
+## Publish & Call（動かす）
 
 ```bash
 # nft_workshop ディレクトリで
