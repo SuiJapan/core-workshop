@@ -295,7 +295,7 @@ sui client call \
 
 ```bash
 # NFTのオブジェクトIDから検索する
-sui client objects {object_id}
+sui client object {object_id}
 
 # もしくはブラウザでエクスプローラを開いて
 # Tx Digest / Object ID を検索（Testnet）
