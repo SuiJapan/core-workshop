@@ -22,15 +22,15 @@ color: #ffffff
 3. **PTB**（Programmable Transaction Blocks）
 4. **テストと検証 & ガス最適化**
 5. **共有オブジェクトと動的フィールド**
-6. **Clock と時間／分散型ガバナンス**
-7. **Sui フレームワーク & ライブラリ連携**
-8. **実践①：NFT の作成**
-9. **実践②：マーケットプレイスのロジック**
+6. **Sui Kioskについて**
+7. **Clock と時間／分散型ガバナンス**
+8. **Sui フレームワーク & ライブラリ連携**
+9. **ワークショップ**
 
 
 ---
 
-# 1. 高度な Move 概念（1/2）
+# 高度な Move 概念（1/2）
 
 | 概念                | 説明                                           | 関連性          |
 | ----------------- | -------------------------------------------- | ------------ |
@@ -42,7 +42,7 @@ color: #ffffff
 
 ---
 
-# 1. 高度な Move 概念（2/2）
+# 高度なMove概念（2/2）
 
 | 概念                  | 説明                           | 関連性           |
 | ------------------- | ---------------------------- | ------------- |
@@ -53,7 +53,7 @@ color: #ffffff
 
 ---
 
-## 高度な Move 概念（やさしい説明）
+## 高度なMove概念（やさしい説明）
 
 * **オブジェクト** = 「名前札の付いた箱」。`UID` がその名前札。
 * **`key`** = 「箱をブロックチェーンの外に出さない約束」。最初に `id: UID` を入れる決まり。
@@ -85,7 +85,7 @@ module workshop::admin_cap {
 
 ---
 
-# 2. 所有権モデル（概観）
+# 所有権モデル（概観）
 
 * **単独所有**：所有者のみ変更可能（速い）
 * **共有オブジェクト**：誰でも変更可能だが合意が必要（遅くなりやすい）
@@ -116,7 +116,7 @@ transfer::public_transfer(C, @0xB0B);
 
 ---
 
-# 3. PTB（Programmable Transaction Blocks）
+# PTB（Programmable Transaction Blocks）
 
 **構造（最低限）**
 
@@ -146,7 +146,7 @@ transfer::public_transfer(C, @0xB0B);
 
 ---
 
-# 4. テストと検証 & ガス最適化（概観）
+# テストと検証 & ガス最適化（概観）
 
 * **ユニットテスト**：`#[test]` + `tx_context::dummy()`
 * **形式検証（Move Prover）**：仕様で安全性を証明
@@ -212,7 +212,7 @@ module workshop::safe_math {
 
 ---
 
-# 5. 共有オブジェクトと動的フィールド（概観）
+# 共有オブジェクトと動的フィールド（概観）
 
 * **共有オブジェクト**：複数主体で更新
 * **Dynamic Field**：親 `UID` に任意値（`store`）をキー付き保存
@@ -288,7 +288,85 @@ module workshop::child_link {
 
 ---
 
-# 6. Clockと時間／分散型ガバナンス（概観）
+## Suiにおけるマーケットプレイス
+
+* SuiではKioskというマーケットプレイス用のフレームワークがあります。
+* アセットを保存して販売リストを作成したり、オークションなどのカスタム取引機能を利用したりすることができます。
+
+---
+
+## Kiosk とは？（概要）
+
+* **Sui ネイティブ**のオンチェーンコマース基盤（フレームワーク標準）。
+* クリエイターは **取引ルール（ポリシー）** を定義でき、取引ごとに適用。
+* **購入が完了する瞬間まで**、出品資産の“本当の所有者”は出品者のまま（安全）。
+* マーケットは Kiosk の**イベントを購読**して一覧・検索を提供できる。
+
+---
+
+## 8-11. Kiosk の主要パーツ
+
+* **Kiosk**：資産を置く場所（多くの操作を第三者が安全に扱えるよう設計）
+* **KioskOwnerCap**：Kiosk に対する**所有者権限の証明**（オーナーだけが特権操作）
+* **Item / Listing**：置いた資産と販売情報
+* **PurchaseCap**：専用購入権（特定の購入者に“専用枠”を与える上級機能）
+* **TransferPolicy**：クリエイターが定義する**取引ルール**（例：ロイヤリティ支払い、制限付き転送）
+
+> Cap（権限）と Policy（ルール）の二本柱で「安全な売買」と「作者の意図」を両立します。
+
+---
+
+## 8-12. アイテムの状態（ざっくり）
+
+* **placed**：Kiosk に置いた状態。オーナーは取り出し可能。
+* **locked**：取り出し不可。**売買を経ないと**外に出せない（強い拘束）。
+* **listed**：価格を付けて出品中。他人が購入でき、編集は不可。
+* **listed_exclusively**：特定の **PurchaseCap** と組み合わせた専用出品（高度）。
+
+> `locked` は **TransferPolicy が存在**する前提で使うのが安全（取り出せず“閉じ込め”ないように）。
+
+---
+
+## 8-13. TransferPolicy（何ができる？）
+
+* 取引ごとに **TransferRequest** が作られ、Policy 側で検証・処理。
+* 代表例：
+
+  * **Royalty Rule**：再販売時に作者へロイヤリティ送付
+  * **Lock Rule**：Kiosk 以外への不正な転送を**禁止**
+  * 会員特典：特定オブジェクト保有者は手数料免除 など
+* ルールの変更は**即時・全体**に反映できる設計（設計例）。
+
+> クリエイターは「どう転送されたら困るか」をルール化し、マーケットはそれを尊重して売買を成立させます。
+
+---
+
+## 8-14. このワークショップ実装との関係
+
+* 今日は **最小の非 Kiosk 市場**で“所有権の移動”を体験します。
+* 実用化の順序例：
+
+  1. NFT タイプに **TransferPolicy** を実装（ロイヤリティ等）
+  2. 出品者ごとに **Kiosk** を作成 → NFT を **place / lock**
+  3. **list** → **purchase** のフローを UI/SDK で実装
+  4. 収益の回収や手数料の送金処理を**SDK**で補助
+* クライアントからは **Kiosk SDK（TypeScript）** を使うと実装が楽です。
+
+> まずは「動く最小形」を押さえ、のちに Kiosk へ段階的に移行するのが現実的です。
+
+---
+
+## 8-15. 参考リンク
+
+* Kiosk（標準ドキュメント）: [https://docs.sui.io/standards/kiosk](https://docs.sui.io/standards/kiosk)
+* Kiosk Apps: [https://docs.sui.io/standards/kiosk-apps](https://docs.sui.io/standards/kiosk-apps)
+* フレームワーク `sui::kiosk` 参照: [https://docs.sui.io/references/framework/sui_sui/kiosk](https://docs.sui.io/references/framework/sui_sui/kiosk)
+* フレームワーク `sui::transfer_policy` 参照: [https://docs.sui.io/references/framework/sui_sui/transfer_policy](https://docs.sui.io/references/framework/sui_sui/transfer_policy)
+* Kiosk SDK（TypeScript）: [https://sdk.mystenlabs.com/kiosk](https://sdk.mystenlabs.com/kiosk)
+
+---
+
+# Clockと時間／分散型ガバナンス（概観）
 
 * `Clock` はネットワークに 1 つの共有オブジェクト
 * `clock::timestamp_ms(&Clock)` で現在時刻（ミリ秒）
@@ -331,7 +409,7 @@ public entry fun vote_yes(g: &mut Governor, _vr: VoteRight) { g.yes = g.yes + 1 
 
 ---
 
-# 7. フレームワーク & ライブラリ連携
+# フレームワーク & ライブラリ連携
 
 * `sui::coin`（カスタムトークン / `TreasuryCap<T>`）
 * `sui::pay`（支払いユーティリティ）
