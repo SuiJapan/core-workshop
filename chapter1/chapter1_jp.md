@@ -59,8 +59,8 @@ color: #ffffff
 
 ---
 
-## Move言語の紹介
-Move言語は、安全性と柔軟性を備えたスマートコントラクトのプログラミング言語です。
+## Sui Move言語の紹介
+Sui Move言語は、安全性と柔軟性を備えたスマートコントラクトのプログラミング言語です。
 
 Docs:
 - https://docs.sui.io/concepts/sui-move-concepts
@@ -80,7 +80,15 @@ Docs:
 
 ---
 
-## Move言語によるNFTの実装例
+## EthereumとSuiにおけるNFTの考え方の違い
+<br/>
+
+![](./image/0.png)
+
+---
+
+## Sui Move言語によるNFTの実装例
+
 ```rust
 module workshop::nft;
 
@@ -104,7 +112,7 @@ public entry fun mint(name: vector<u8>, url_bytes: vector<u8>, ctx: &mut TxConte
 ```
 ---
 
-## Move言語によるFTの実装例
+## Sui Move言語によるFTの実装例
 
 ```rust
 module examples::my_coin_new;
@@ -285,8 +293,21 @@ Repo: https://github.com/SuiJapan/nft-mint-sample
 ---
 
 ## Quiz
+
+<br/>
+
 - Suiのオブジェクトモデルとは何でしょうか？
 - MoveはSolidityとはどのように違うでしょうか？
+
+---
+
+## セットアップガイド：環境構築
+
+<br/>
+
+- Docker Desktopをインストールすること
+- VS Codeを立ち上げて「ReOpen in Container」を選択すること
+- Sui CLIコマンドが実行できることを確認すること
 
 ---
 
