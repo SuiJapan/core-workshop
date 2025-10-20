@@ -35,12 +35,11 @@ color: #ffffff
 <div>
 
 ### ユーザーログイン
-- GoogleやFacebookなどの既存の<br/>認証情報でウォレット生成 
-- 認証情報とウォレットアドレスが<br/>直接紐づかない
+- GoogleやFacebookなどの<br/>既存認証情報でウォレット生成 
+- 認証情報とウォレットが<br/>直接紐づかない
 
 ### プライバシー保護
-- JWTとソルトからzkProofを生成
-  アカウントの安全性を確保します。
+- JWTとソルトからZKProofを<br/>生成し、アカウントの秘匿性を確保します。
 
 </div>
 
@@ -49,6 +48,8 @@ color: #ffffff
 ### なぜ重要か
 - 使い慣れたWeb認証情報でdAppにログインしつつ、  
   ゼロ知識証明によってプライバシーを保護します。
+
+<br/>
 
 **ドキュメント**  
 https://docs.sui.io/concepts/cryptography/zklogin
@@ -59,19 +60,12 @@ https://docs.sui.io/concepts/cryptography/zklogin
 
 ---
 
-## 演習 — zkLoginのデモアプリを作ってみよう！
+# zkLoginを支える主な技術
 <br/>
-<div class="compact-sm">
 
-### UNCHAINの教材のリンク
-
-https://buidl.unchain.tech/Sui/Sui-zklogin/
-
-### スターターキット
-
-https://github.com/unchain-tech/sui-zklogin-app
-
-</div>
+## 1. **ゼロ知識証明**
+## 2. **OpenID Connect**
+## 3. **@mysten/zklogin**
 
 ---
 
@@ -185,6 +179,26 @@ https://bridge.sui.io/
 https://agent.getnimbus.io/
 
 </div>
+
+</div>
+
+---
+
+## 演習
+<br/>
+
+<div class="compact-sm">
+
+-  **UNCHAINの学習コンテンツ**
+    https://buidl.unchain.tech/Sui/Sui-zklogin/
+
+- **スターターキット**
+    https://github.com/unchain-tech/sui-zklogin-app
+
+### zkLoginのサンプルアプリを作ってみよう！
+- Google認証でウォレットを作成できるようにします
+- 秘密鍵の管理無しでSUIの送金とNFTのミントが試せるようなアプリを作ります
+
 
 </div>
 
