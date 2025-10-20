@@ -2,9 +2,8 @@ import { GasStationClient, createSuiClient } from "@shinami/clients/sui";
 import { Transaction } from "@mysten/sui/transactions";
 import { Ed25519Keypair } from "@mysten/sui/keypairs/ed25519";
 
-const ACCESS_KEY = "us1_sui_testnet_a92ab1ad11584e039ecb412f57bfb11d";
-const SENDER_SECRET =
-  "suiprivkey1qr6t4n3a9l94ds65xjxe28jqcwcatdhduxr89czuqc3cxvt4jucmvh5yrmx"; // 先に一度生成して保存
+const ACCESS_KEY = process.env.NEXT_PUBLIC_SHINAMI_ACCESS_KEY!;
+const SENDER_SECRET = "<シークレットキー>";
 
 async function main() {
   const node = createSuiClient(ACCESS_KEY); // Node Service
