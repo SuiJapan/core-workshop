@@ -6,14 +6,15 @@ import { SuiAgentKit } from "@getnimbus/sui-agent-kit";
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.GEMINI_API_KEY,
+  baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
 });
 
 const agent = new SuiAgentKit(
   process.env.SUI_PRIVATE_KEY,
   process.env.RPC_URL,
   {
-    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    OPENAI_API_KEY: process.env.GEMINI_API_KEY,
   }
 );
 
@@ -42,7 +43,7 @@ async function main() {
       rl.question("\nPrompt: ", resolve);
     });
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gemini-2.0-flash-exp",
       messages: [
         {
           role: "system",
@@ -62,7 +63,7 @@ async function main() {
       if (functionName === "get_holdings") {
         const holdings = await agent.getHoldings();
         const formattedHoldings = await openai.chat.completions.create({
-          model: "gpt-4o-mini",
+          model: "gemini-2.0-flash-exp",
           messages: [
             {
               role: "system",
