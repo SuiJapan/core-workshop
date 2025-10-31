@@ -16,27 +16,27 @@
    - 「Create API Key」をクリックして API キーを取得
    - 課金設定は不要（無料枠で利用可能）
 
-2. **Sui プライベートキー**（Base64 または `0x` 形式）と接続したい **RPC URL**（例: `https://fullnode.testnet.sui.io:443`）を用意
+2. **Sui プライベートキー**（suiprivkey...形式で､SlushWalletから確認可能）
 
 3. プロジェクト直下に `.env` を作成し、以下を記入
    ```bash
    GEMINI_API_KEY=AIzaSy...
-   SUI_PRIVATE_KEY=0x... # または Base64 形式
+   SUI_PRIVATE_KEY=suiprivkey...
    RPC_URL=https://fullnode.testnet.sui.io:443
    ```
    ※ 秘密鍵はハードコードせず `.env` のみに保存し、コミットしないよう注意してください
 
 ## 実行方法
-1. 依存パッケージをインストール  
+1. 依存パッケージをインストール
    ```bash
    npm install
    ```
-2. CLI を起動  
+2. CLI を起動
    ```bash
    node index.js
    ```
-3. `Prompt:` が表示されたら質問を入力  
-   - 一般的な質問 → AI がそのまま回答  
+3. `Prompt:` が表示されたら質問を入力
+   - 一般的な質問 → AI がそのまま回答
    - 「ウォレットの残高は？」など、保有資産を尋ねる → エージェントが `getHoldings()` を呼び出し、AI が結果を表形式で表示
 
 ## 動作フロー
