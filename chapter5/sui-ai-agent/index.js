@@ -1,87 +1,87 @@
-import * as readline from "readline";
+import * as readline from "node:readline";
+import { SuiAgentKit } from "@getnimbus/sui-agent-kit";
 import * as dotenv from "dotenv";
 import OpenAI from "openai";
-import { SuiAgentKit } from "@getnimbus/sui-agent-kit";
 
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-  baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+	apiKey: process.env.GEMINI_API_KEY,
+	baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
 });
 
 const agent = new SuiAgentKit(
-  process.env.SUI_PRIVATE_KEY,
-  process.env.RPC_URL,
-  {
-    OPENAI_API_KEY: process.env.GEMINI_API_KEY,
-  }
+	process.env.SUI_PRIVATE_KEY,
+	process.env.RPC_URL,
+	{
+		OPENAI_API_KEY: process.env.GEMINI_API_KEY,
+	},
 );
 
 const tools = [
-  {
-    type: "function",
-    function: {
-      name: "get_holdings",
-      description: "Get all token balances in the wallet",
-      parameters: {
-        type: "object",
-        properties: {},
-      },
-    },
-  },
+	{
+		type: "function",
+		function: {
+			name: "get_holdings",
+			description: "Get all token balances in the wallet",
+			parameters: {
+				type: "object",
+				properties: {},
+			},
+		},
+	},
 ];
 
 async function main() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+	const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
 
-  while (true) {
-    const input = await new Promise((resolve) => {
-      rl.question("\nPrompt: ", resolve);
-    });
-    const response = await openai.chat.completions.create({
-      model: "gemini-2.0-flash-exp",
-      messages: [
-        {
-          role: "system",
-          content: "You are a helpful assistant",
-        },
-        {
-          role: "user",
-          content: input,
-        },
-      ],
-      tools: tools,
-      tool_choice: "auto",
-    });
-    const message = response.choices[0].message;
-    if (message.tool_calls && message.tool_calls.length > 0) {
-      const functionName = message.tool_calls[0].function.name;
-      if (functionName === "get_holdings") {
-        const holdings = await agent.getHoldings();
-        const formattedHoldings = await openai.chat.completions.create({
-          model: "gemini-2.0-flash-exp",
-          messages: [
-            {
-              role: "system",
-              content:
-                "Format the wallet holdings in a nice table format.Show token name, symbol and balance.",
-            },
-            {
-              role: "user",
-              content: `${JSON.stringify(holdings)}`,
-            },
-          ],
-        });
-        console.log(formattedHoldings.choices[0].message.content);
-      }
-    } else {
-      console.log(message.content);
-    }
-  }
+	while (true) {
+		const input = await new Promise((resolve) => {
+			rl.question("\nPrompt: ", resolve);
+		});
+		const response = await openai.chat.completions.create({
+			model: "gemini-2.0-flash-exp",
+			messages: [
+				{
+					role: "system",
+					content: "You are a helpful assistant",
+				},
+				{
+					role: "user",
+					content: input,
+				},
+			],
+			tools: tools,
+			tool_choice: "auto",
+		});
+		const message = response.choices[0].message;
+		if (message.tool_calls && message.tool_calls.length > 0) {
+			const functionName = message.tool_calls[0].function.name;
+			if (functionName === "get_holdings") {
+				const holdings = await agent.getHoldings();
+				const formattedHoldings = await openai.chat.completions.create({
+					model: "gemini-2.0-flash-exp",
+					messages: [
+						{
+							role: "system",
+							content:
+								"Format the wallet holdings in a nice table format.Show token name, symbol and balance.",
+						},
+						{
+							role: "user",
+							content: `${JSON.stringify(holdings)}`,
+						},
+					],
+				});
+				console.log(formattedHoldings.choices[0].message.content);
+			}
+		} else {
+			console.log(message.content);
+		}
+	}
 }
 
 main();
